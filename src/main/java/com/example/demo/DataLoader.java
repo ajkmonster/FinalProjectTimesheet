@@ -23,7 +23,7 @@ public class DataLoader implements CommandLineRunner {
 
 
         Role adminRole = roleRepository.findByRole("ADMIN");
-        Role SUPERRole = roleRepository.findByRole("SUPER");
+        Role superRole = roleRepository.findByRole("SUPER");
         Role userRole = roleRepository.findByRole("USER");
 
         //needs user
