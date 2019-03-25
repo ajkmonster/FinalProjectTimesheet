@@ -18,6 +18,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToOne
+    Department department;
     @NotNull
     @Column(name = "first_name")
     private String firstName;
@@ -179,6 +181,13 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
 }
