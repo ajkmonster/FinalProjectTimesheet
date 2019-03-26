@@ -61,14 +61,28 @@ public class HomeController {
 //    public String admin(){
 //        return "admin";
 //    }
-
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model){
-        User myuser = ((CustomUserDetails)
-                ((UsernamePasswordAuthenticationToken) principal)
-                        .getPrincipal()).getUser();
-        model.addAttribute("myuser", myuser);
-        return "secure";
+    @RequestMapping("/timesheetentry")
+    public String timesheetentry(){
+        return "timesheetentry";
     }
+    @PostMapping("/mytimesheetentryprocess")
+    public String mytimesheetentryprocess(){
+        return "mytimesheet";
+    }
+    @RequestMapping("/mytimesheet")
+    public String mytimesheet(){
+        return "mytimesheet";
+    }
+    @RequestMapping("/personalinfo")
+    public String personalinfo(Model model){
+        model.addAttribute(userService.getUser());
+        return "personalinfo";
+    }
+    //only supervisor sees this
+    @RequestMapping("/tsapproval")
+    public String tsapproval(){
+        return "tsapproval";
+    }
+
 
 }
