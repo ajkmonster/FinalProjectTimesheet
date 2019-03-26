@@ -34,6 +34,7 @@ public class HomeController {
         model.addAttribute("user", user);
         if (result.hasErrors())
         {
+            departmentRepository.findAll();
             return "registration";
         }
         else
@@ -76,7 +77,7 @@ public class HomeController {
     }
     @RequestMapping("/personalinfo")
     public String personalinfo(Model model){
-        model.addAttribute(userService.getUser());
+       model.addAttribute("user",userService.getUser());
         return "personalinfo";
     }
     //only supervisor sees this
