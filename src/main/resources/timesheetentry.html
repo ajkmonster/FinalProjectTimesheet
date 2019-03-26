@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+
+    Pay Codes : <select class="form-control" th:field="*{category}">
+    <option value="">Regular</option>
+    <option value="">Leave Without Pay</option>
+    <option value="">Annual Leave</option>
+    <option value="">Comp Time Used</option>
+    <option value="">Holiday</option>
+    <option value="">Holiday Worked</option>
+    <option value="">Regular Overtime</option>
+    <option value="">Holiday Overtime</option>
+
+</select>
+
+    Date : <input type="date" class="form-control" th:field="*{manufacturer}" placeholder="Enter your name" required/>
+
+    Start Time : <input type="time" class="form-control" th:field="*{manufacturer}" placeholder="Enter your name" required/>
+
+    End Time : <input type="time" class="form-control" th:field="*{manufacturer}" placeholder="Enter your name" required/>
+
+    <input class="btn-sm btn-success btn" type="submit" name="SUBMIT"/>
+</form>
+
+</body>
+</html>
