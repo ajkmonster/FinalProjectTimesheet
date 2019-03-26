@@ -53,7 +53,8 @@ public class HomeController {
         return "index";
     }
     @RequestMapping("/login")
-    public String login(){
+    public String login(Model model){
+
         return "login";
     }
 
