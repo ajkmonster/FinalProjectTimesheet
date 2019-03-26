@@ -37,11 +37,9 @@ public class User {
     private String state;
     @NotNull
     @Size(min=5,max=5)
-    @Pattern(regexp = "^(?=.*[0-9])$")
     @Column(name = "zip")
     private String zip;
     @Size(min = 4,max = 4)
-    @Pattern(regexp = "^(?=.*[0-9])$")
     @Column(name = "social")
     private String social;
     @NotNull
