@@ -1,0 +1,9 @@
+body {
+
+    background: url("https://res.cloudinary.com/dh18h6lff/image/upload/v1553610612/back23.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
