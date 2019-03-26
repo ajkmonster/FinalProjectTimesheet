@@ -54,6 +54,12 @@
         <input class="form-control" type="text" id="zip" placeholder="Zip Code"
                th:field="*{zip}"/><br/>
 
+        Email<strong>
+    <span th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}">Email Error</span></strong>
+        <input class="form-control" type="text" id="email" placeholder="Email"
+               th:field="*{email}"/><br/>
+
         Password<strong>
     <span th:if="${#fields.hasErrors('password')}"
           th:errors="*{password}">Password Error</span></strong>
