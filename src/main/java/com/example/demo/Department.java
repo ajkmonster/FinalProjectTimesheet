@@ -19,6 +19,9 @@ public class Department {
 
     public Department() {
     }
+    public Department(String departmentName){
+        this.departmentName=departmentName;
+    }
 
     public long getId() {
         return id;

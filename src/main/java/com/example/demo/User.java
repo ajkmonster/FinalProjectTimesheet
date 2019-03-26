@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne
+    @ManyToOne
     Department department;
     @NotNull
     @Column(name = "first_name")
@@ -79,7 +79,21 @@ public class User {
         this.setZip(zip);
         this.setSocial(social);
     }
-
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String street,
+                String state, String city, String zip, String social,Department department) {
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEnabled(enabled);
+        this.setUsername(email);
+        this.setStreet(street);
+        this.setState(state);
+        this.setCity(city);
+        this.setZip(zip);
+        this.setSocial(social);
+        this.setDepartment(department);
+    }
     public String getFirstName() {
         return firstName;
     }

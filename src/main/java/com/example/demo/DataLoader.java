@@ -26,14 +26,35 @@ public class DataLoader implements CommandLineRunner {
         Role superRole = roleRepository.findByRole("SUPER");
         Role userRole = roleRepository.findByRole("USER");
 
+
         User user = new User("joe@joe.com","password", "Joe", "Joe",true, "1421 Vertel Street",
                 "MD", "Rockville", "20905", "8754");
         user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
+        Department department = new Department("HR");
+        user = new User("super@super.com","password","HR","Super",true,"dewefwd",
+                "MD","Rockville","20852","8788",department);
+        user.setRoles(Arrays.asList(userRole));
+        user.setRoles(Arrays.asList(superRole));
+        userRepository.save(user);
+
+        department = new Department("Management");
+        user = new User("super@super.com","password","Management","Super",true,"dewefwd",
+                "MD","Rockville","20852","8788",department);
+        user.setRoles(Arrays.asList(userRole));
+        user.setRoles(Arrays.asList(superRole));
+        userRepository.save(user);
+
+        department = new Department("Healthcare");
+        user = new User("super@super.com","password","Healthcare","Super",true,"dewefwd",
+                "MD","Rockville","20852","8788");
+        user.setRoles(Arrays.asList(userRole));
+        user.setRoles(Arrays.asList(superRole));
+        userRepository.save(user);
         user = new User("Admin@admin.com", "password", "Admin","User",true,"efwdewe",
                 "MD","Silver Spring","20905","3333");
-
+        user.setRoles(Arrays.asList(adminRole));
 
     }
 }
