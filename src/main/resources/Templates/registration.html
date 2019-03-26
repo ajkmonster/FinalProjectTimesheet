@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+
+</head>
+<body>
+
+    <h4>New User Registration</h4>
+    <form class="form-group" autocomplete="off"
+          action="#"
+          th:action="@{/register}"
+          th:object="${user}" method="post" enctype="multipart/form-data">
+
+        Department<select th:field="*{department}" class="form-control input-md">
+        <option th:each="option: ${departments}"
+                th:value="${option.id}">[[${option.departmentName}]]</option>
+    </select>
+
+        First Name<strong>
+    <span th:if="${#fields.hasErrors('firstName')}"
+          th:errors="*{firstName}">First Name Error</span></strong>
+        <input class="form-control" type="text" id="firstName" placeholder="First Name"
+               th:field="*{firstName}"/><br/>
+
+        Last Name<strong>
+    <span th:if="${#fields.hasErrors('lastName')}"
+          th:errors="*{lastName}">Last Name Error</span></strong>
+        <input class="form-control" type="text" id="lastName" placeholder="Last Name"
+               th:field="*{lastName}"/><br/>
+
+        Social Security Number<strong>
+    <span th:if="${#fields.hasErrors('social')}"
+          th:errors="*{social}">Social Security Error</span></strong>
+        <input class="form-control" type="text" id="social" placeholder="Social"
+               th:field="*{social}"/><br/>
+
+        City<strong>
+    <span th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}">City Error</span></strong>
+        <input class="form-control" type="text" id="city" placeholder="City"
+               th:field="*{city}"/><br/>
+
+        State<strong>
+    <span th:if="${#fields.hasErrors('state')}"
+          th:errors="*{state}">State Error</span></strong>
+        <input class="form-control" type="text" id="state" placeholder="State"
+               th:field="*{state}"/><br/>
+
+        Zip Code<strong>
+    <span th:if="${#fields.hasErrors('zip')}"
+          th:errors="*{zip}">Zip Code Error</span></strong>
+        <input class="form-control" type="text" id="zip" placeholder="Zip Code"
+               th:field="*{zip}"/><br/>
+
+        Password<strong>
+    <span th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Password Error</span></strong>
+        <input class="form-control" type="text" id="password" placeholder="Password"
+               th:field="*{password}"/><br/>
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
