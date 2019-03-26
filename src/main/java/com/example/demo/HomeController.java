@@ -17,9 +17,12 @@ import java.security.Principal;
 public class HomeController {
     @Autowired
     private UserService userService;
+    @Autowired
+    DepartmentRepository departmentRepository;
     @GetMapping ("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("departments",departmentRepository.findAll());
         return "registration";
     }
 
