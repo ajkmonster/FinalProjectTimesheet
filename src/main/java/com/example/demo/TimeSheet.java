@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.stereotype.Controller;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
