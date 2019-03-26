@@ -46,7 +46,10 @@ public class HomeController {
 
 
     @RequestMapping("/")
-    public String index(){
+    public String index(Principal principal, Model model){
+        User myuser = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal)
+                .getPrincipal()).getUser();
+        model.addAttribute("myuser",myuser);
         return "index";
     }
     @RequestMapping("/login")
