@@ -4,6 +4,8 @@
 <head th:replace="base :: headstuff">
 </head>
 <body>
+<nav th:replace="base :: navbar"></nav>
+
 
     <h4>New User Registration</h4>
     <form class="form-group" autocomplete="off"
@@ -63,6 +65,9 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+    <nav th:replace="base :: foot"></nav>
+    <th:block th:replace="base :: jslinks"></th:block>
 
 </body>
 </html>
