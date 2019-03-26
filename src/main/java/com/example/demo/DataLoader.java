@@ -6,6 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -13,6 +15,8 @@ public class DataLoader implements CommandLineRunner {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    DepartmentRepository departmentRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Override
@@ -37,6 +41,10 @@ public class DataLoader implements CommandLineRunner {
                 "MD","Rockville","20852","8788",department);
         user.setRoles(Arrays.asList(userRole));
         user.setRoles(Arrays.asList(superRole));
+        Set<User> users = new HashSet<>();
+        users.add(user);
+        department.setUsers(users);
+        departmentRepository.save(department);
         userRepository.save(user);
 
         department = new Department("Management");
@@ -44,14 +52,23 @@ public class DataLoader implements CommandLineRunner {
                 "MD","Rockville","20852","8788",department);
         user.setRoles(Arrays.asList(userRole));
         user.setRoles(Arrays.asList(superRole));
+        users = new HashSet<>();
+        users.add(user);
+        department.setUsers(users);
+        departmentRepository.save(department);
         userRepository.save(user);
 
         department = new Department("Healthcare");
         user = new User("super@super.com","password","Healthcare","Super",true,"dewefwd",
-                "MD","Rockville","20852","8788");
+                "MD","Rockville","20852","8788",department);
         user.setRoles(Arrays.asList(userRole));
         user.setRoles(Arrays.asList(superRole));
+        users = new HashSet<>();
+        users.add(user);
+        department.setUsers(users);
+        departmentRepository.save(department);
         userRepository.save(user);
+
         user = new User("Admin@admin.com", "password", "Admin","User",true,"efwdewe",
                 "MD","Silver Spring","20905","3333");
         user.setRoles(Arrays.asList(adminRole));
