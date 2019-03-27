@@ -63,9 +63,13 @@ public class HomeController {
 
 
     @RequestMapping("/mytimesheet")
-    public String mytimesheet(){
+    public String mytimesheet(Model model){
+        User user = new User();
+        user = userService.getUser();
+        model.addAttribute("timesheets", timeSheetRespository.findByUser(user));
         return "mytimesheet";
     }
+
     @RequestMapping("/personalinfo")
     public String personalinfo(Model model){
        model.addAttribute("user",userService.getUser());
@@ -92,6 +96,7 @@ public class HomeController {
         timeSheetRespository.save(timeSheet);
         return "mytimesheet";
     }
+
 
 
 }

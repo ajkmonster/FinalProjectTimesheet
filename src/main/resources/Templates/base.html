@@ -22,12 +22,12 @@
         <div class="navbar-nav" sec:authorize="isAuthenticated()">
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
             <!--<div sec:authorize="isAuthenticated()">-->
-                <a class="nav-item nav-link" href="/mytimesheet">Features</a>
-                <a class="nav-item nav-link" href="/personalinfo">Pricing</a>
-                <a class="nav-item nav-link" href="/paystub">Features</a>
-                <a class="nav-item nav-link" href="/personalinfo">Pricing</a>
+                <a class="nav-item nav-link" href="/mytimesheet">My Timesheet</a>
+                <a class="nav-item nav-link" href="/personalinfo">Info</a>
+                <a class="nav-item nav-link" href="/timesheetentry">Enter Timesheet</a>
+                <!--<a class="nav-item nav-link" href="/personalinfo">Pricing</a>-->
                 <div sec:authorize="hasAuthority('SUPER')">
-                    <a class="nav-item nav-link" href="/tsapproval">Pricing</a>
+                    <a class="nav-item nav-link" href="/tsapproval">Approvak</a>
                 </div>
                 <a class="nav-item nav-link active" th:href="@{/logout}">Logout</a>
             <!--</div>-->
