@@ -16,9 +16,9 @@
     <div class="container">
 
         <h2 align="center">Enter Your Time</h2>
-        <form>
+        <form action="#" th:action="@{/timesheetentryprocess}" th:object="${timesheet}" method="post">
 
-            Pay Codes : <select class="form-control" th:field="*{}">
+            Pay Codes : <select class="form-control" th:field="*{paycode}">
             <option value="">Regular</option>
             <option value="">Leave Without Pay</option>
             <option value="">Annual Leave</option>

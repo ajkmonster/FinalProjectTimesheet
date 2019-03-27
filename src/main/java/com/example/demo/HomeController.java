@@ -19,6 +19,8 @@ public class HomeController {
     private UserService userService;
     @Autowired
     DepartmentRepository departmentRepository;
+    @Autowired
+    TimeSheetRespository timeSheetRespository;
     @GetMapping ("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
@@ -58,18 +60,7 @@ public class HomeController {
         return "login";
     }
 
-//    @RequestMapping("/admin")
-//    public String admin(){
-//        return "admin";
-//    }
-    @RequestMapping("/timesheetentry")
-    public String timesheetentry(){
-        return "timesheetentry";
-    }
-    @PostMapping("/mytimesheetentryprocess")
-    public String mytimesheetentryprocess(){
-        return "mytimesheet";
-    }
+
     @RequestMapping("/mytimesheet")
     public String mytimesheet(){
         return "mytimesheet";
@@ -83,6 +74,22 @@ public class HomeController {
     @RequestMapping("/tsapproval")
     public String tsapproval(){
         return "tsapproval";
+    }
+
+    @GetMapping("/timesheetentry")
+    public String timesheetentry(Model model){
+    model.addAttribute("timesheet",new TimeSheet());
+    return "timesheetentry";
+    }
+    @PostMapping("/timesheetentryprocess")
+    public String timesheetentryprocess(@ModelAttribute("timesheet") @Valid TimeSheet timeSheet , BindingResult result,
+                                          Model model) {
+        if (result.hasErrors()) {
+            return "timesheetentry";
+        }
+        timeSheet.setUser(userService.getUser());
+        timeSheetRespository.save(timeSheet);
+        return "mytimesheet";
     }
 
 

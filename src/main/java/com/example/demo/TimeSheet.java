@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Time;
 
 @Entity
 public class TimeSheet {
@@ -18,6 +19,12 @@ public class TimeSheet {
     private String startTime;
 
     private String endTime;
+
+    private User user;
+
+    public TimeSheet(){
+
+    }
 
     public long getId() {
         return id;
@@ -49,5 +56,13 @@ public class TimeSheet {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
