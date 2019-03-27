@@ -2,10 +2,8 @@ package com.example.demo;
 
 import org.springframework.stereotype.Controller;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 import java.sql.Time;
 
@@ -23,7 +21,7 @@ public class TimeSheet {
     private String startTime;
 
     private String endTime;
-
+    @ManyToOne
     private User user;
 
     public TimeSheet(){

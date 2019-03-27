@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name="User_Data")
@@ -35,17 +36,18 @@ public class User {
     @NotNull
     @Column(name = "state")
     private String state;
-    @NotNull
+
     @Size(min=5,max=5)
     @Column(name = "zip")
     private String zip;
+
     @Size(min = 4,max = 4)
     @Column(name = "social")
     private String social;
-    @NotNull
+
     @Column(name = "password")
     private String password;
-    @NotNull
+
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @Column(name = "email",nullable=false)
     private String email;
@@ -59,6 +61,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    public Set<TimeSheet> timesheet;
 
     public User() {
     }
@@ -200,6 +205,14 @@ public class User {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Set<TimeSheet> getTimesheet() {
+        return timesheet;
+    }
+
+    public void setTimesheet(Set<TimeSheet> timesheet) {
+        this.timesheet = timesheet;
     }
 
 }
