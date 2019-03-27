@@ -97,6 +97,16 @@
     </div>
     <br>
     <div class="form-inline">
+        <label class="control-label col-sm-1" for="department">Department:</label>
+        <div class="col-auto">
+                <select th:field="*{department}" class="form-control input-md" id="department">
+                <option th:each="option: ${departments}"
+                th:value="${option}">[[${option.departmentName}]]</option>
+                </select>
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
         <label class="control-label col-sm-1"></label>
         <div class="col-auto">
             <button type="submit"  class="btn btn-outline-dark">Submit</button>

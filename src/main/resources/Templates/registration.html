@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head th:replace="base :: headstuff">
 </head>
@@ -11,10 +11,10 @@
     <form class="form-group" autocomplete="off"
           action="#"
           th:action="@{/register}"
-          th:object="${user}" method="post" enctype="multipart/form-data">
+          th:object="${user}" method="post" >
 
         Department<select th:field="*{department}" class="form-control input-md">
-        <option th:each="option: ${departments}"
+        <option th:each="option : ${departments}"
                 th:value="${option.id}">[[${option.departmentName}]]</option>
     </select>
 
@@ -60,10 +60,8 @@
         <input class="form-control" type="text" id="email" placeholder="Email"
                th:field="*{email}"/><br/>
 
-        Password<strong>
-    <span th:if="${#fields.hasErrors('password')}"
-          th:errors="*{password}">Password Error</span></strong>
-        <input class="form-control" type="text" id="password" placeholder="Password"
+        Password
+        <input class="form-control" type="password" id="password" placeholder="Password"
                th:field="*{password}"/><br/>
 
 

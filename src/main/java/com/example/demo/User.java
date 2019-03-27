@@ -75,7 +75,7 @@ public class User {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEnabled(enabled);
-        this.setUsername(email);
+        this.setUsername();
         this.setStreet(street);
         this.setState(state);
         this.setCity(city);
@@ -89,7 +89,7 @@ public class User {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEnabled(enabled);
-        this.setUsername(email);
+        this.setUsername();
         this.setStreet(street);
         this.setState(state);
         this.setCity(city);
@@ -189,8 +189,8 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername() {
+        this.username = this.email;
     }
     public Collection<Role> getRoles() {
         return roles;
