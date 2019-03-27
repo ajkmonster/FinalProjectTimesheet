@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Locale;
 
 @Controller
 public class HomeController {
@@ -65,7 +69,9 @@ public class HomeController {
     public String mytimesheet(Model model){
         User user = new User();
         user = userService.getUser();
-        model.addAttribute("timesheets", timeSheetRespository.findByUser(user));
+        ArrayList<TimeSheet> results = (ArrayList<TimeSheet>)
+                timeSheetRespository.findByUser(user);
+        model.addAttribute("timesheets",results);
         return "mytimesheet";
     }
 
@@ -86,11 +92,15 @@ public class HomeController {
     return "timesheetentry";
     }
     @PostMapping("/timesheetentryprocess")
-    public String timesheetentryprocess(@ModelAttribute("timesheet") @Valid TimeSheet timeSheet , BindingResult result,
-                                          Model model) {
-        if (result.hasErrors()) {
-            return "timesheetentry";
-        }
+    public String timesheetentryprocess(@ModelAttribute("timesheet") TimeSheet timeSheet ,
+                                          Model model
+    ) {
+//        if (result.hasErrors()) {
+//            return "timesheetentry";
+//        }
+//        DateTimeFormatter df = new DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
+//        LocalDate timesheetDate = LocalDate.parse(date, df);
+//        timeSheet.setDate(timesheetDate);
         timeSheet.setUser(userService.getUser());
         timeSheetRespository.save(timeSheet);
         return "mytimesheet";
