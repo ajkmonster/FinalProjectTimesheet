@@ -24,7 +24,7 @@ public class HomeController {
     TimeSheetRespository timeSheetRespository;
     @Autowired
     UserRepository userRepository;
-    @GetMapping ("/register")
+    @RequestMapping ("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("departments",departmentRepository.findAll());
@@ -32,18 +32,17 @@ public class HomeController {
     }
 
     @PostMapping ("/register")
-    public String processRegistrationPrage(@Valid
-                                           @ModelAttribute("user") User user,
+    public String processRegistrationPrage(@Valid@ModelAttribute("user") User user,
                                            BindingResult result,
                                            Model model){
-        model.addAttribute("user", user);
         if (result.hasErrors())
         {
-            departmentRepository.findAll();
+            model.addAttribute("departments",departmentRepository.findAll());
             return "registration";
         }
         else
         {
+            user.setUsername();
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
