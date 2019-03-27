@@ -5,10 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -21,6 +18,8 @@ public class HomeController {
     DepartmentRepository departmentRepository;
     @Autowired
     TimeSheetRespository timeSheetRespository;
+    @Autowired
+    UserRepository userRepository;
     @GetMapping ("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
@@ -91,6 +90,26 @@ public class HomeController {
         timeSheet.setUser(userService.getUser());
         timeSheetRespository.save(timeSheet);
         return "mytimesheet";
+    }
+
+    @RequestMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") long id, Model model){
+        model.addAttribute("departments", departmentRepository.findAll());
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "editinfo";
+    }
+
+    @PostMapping("/editinfo")
+    public String processForm(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+
+        if(result.hasErrors()){
+            model.addAttribute("departments",departmentRepository.findAll());
+            return "editinfo";
+        }
+
+        userRepository.save(user);
+        model.addAttribute("user",user);
+        return "redirect:/personalinfo";
     }
 
 
