@@ -88,6 +88,7 @@ public class HomeController {
     @GetMapping("/timesheetentry")
     public String timesheetentry(Model model){
     model.addAttribute("timesheet",new TimeSheet());
+    model.addAttribute("tstimes", new TSTimes());
     return "timesheetentry";
     }
     @PostMapping("/timesheetentryprocess")
