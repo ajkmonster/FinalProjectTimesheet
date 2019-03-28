@@ -12,6 +12,7 @@
           action="#"
           th:action="@{/register}"
           th:object="${user}" method="post" >
+        <input type="hidden" th:field="*{id}"/>
 
         Department<select th:field="*{department}" class="form-control input-md">
         <option th:each="option : ${departments}"
@@ -36,6 +37,12 @@
         <input class="form-control" type="text" id="social" placeholder="Social"
                th:field="*{social}"/><br/>
 
+        Street<strong>
+    <span th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}">Street Error</span></strong>
+        <input class="form-control" type="text" id="street" placeholder="street"
+               th:field="*{street}"/><br/>
+
         City<strong>
     <span th:if="${#fields.hasErrors('city')}"
           th:errors="*{city}">City Error</span></strong>
@@ -54,7 +61,8 @@
         <input class="form-control" type="text" id="zip" placeholder="Zip Code"
                th:field="*{zip}"/><br/>
 
-        Email<strong>
+        Email
+        <strong>
     <span th:if="${#fields.hasErrors('email')}"
           th:errors="*{email}">Email Error</span></strong>
         <input class="form-control" type="text" id="email" placeholder="Email"

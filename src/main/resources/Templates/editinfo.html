@@ -42,6 +42,15 @@
     </div>
     <br>
     <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="street">City:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="city" placeholder="City" th:field="*{city}" />
+            <span th:if="${#fields.hasErrors('city')}"
+                  th:errors="*{city}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
         <label class="control-label col-sm-1 text-center" for="zip">zip:</label>
         <div class="col-auto">
             <input type="text" class="form-control basicAutoComplete" id="zip" placeholder="Zip" th:field="*{zip}" />
@@ -80,8 +89,7 @@
     <div class="form-inline">
         <label class="control-label col-sm-1" for="username">Username:</label>
         <div class="col-auto">
-            <input type="text" class="form-control basicAutoComplete" id="username" placeholder="Username" th:field="*{username}" disabled/>
-            <input type="hidden" th:field="*{username}" />
+            <input type="hidden" th:field="*{username}" id="username" />
             <span th:if="${#fields.hasErrors('username')}"
                   th:errors="*{username}"></span><br />
         </div>
@@ -91,8 +99,6 @@
         <label class="control-label col-sm-1" for="password">Password:</label>
         <div class="col-auto">
             <input type="password" class="form-control basicAutoComplete" id="password" placeholder="password" th:field="*{password}" />
-            <span th:if="${#fields.hasErrors('password')}"
-                  th:errors="*{password}"></span><br />
         </div>
     </div>
     <br>
@@ -101,7 +107,7 @@
         <div class="col-auto">
                 <select th:field="*{department}" class="form-control input-md" id="department">
                 <option th:each="option: ${departments}"
-                th:value="${option}">[[${option.departmentName}]]</option>
+                th:value="${option,id}">[[${option.departmentName}]]</option>
                 </select>
         </div>
     </div>
