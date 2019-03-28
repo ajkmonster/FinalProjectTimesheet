@@ -112,6 +112,7 @@ public class HomeController {
         }
 
         timeSheet.setTsTimes(times);
+        timeSheet.setStatus(0);
         timeSheet.setUser(userService.getUser());
         timeSheetRespository.save(timeSheet);
 

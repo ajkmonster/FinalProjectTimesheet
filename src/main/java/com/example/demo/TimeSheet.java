@@ -31,6 +31,7 @@ public class TimeSheet {
     @ManyToOne
     private User user;
 
+    private int status;
 
 
     public TimeSheet(){
@@ -78,6 +79,12 @@ public class TimeSheet {
         this.user = user;
     }
 
+    public int getStatus() {
+        return status;
+    }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }
 
