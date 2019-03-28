@@ -7,11 +7,17 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 
-<!--<div th:each="timesheet : ${timesheets}">-->
+<h1>HELLLOOO THERE</h1>
+<div th:each="timesheet : ${timesheets}">
     <!--<p th:text="${timesheet.payCode}"></p>-->
-    <!--<p th:text="${timesheet.startTime}"></p>-->
-    <!--<p th:text="${timesheet.endTime}"></p>-->
-<!--</div>-->
+    <!--<p th:text="${timesheet.date}"></p>-->
+    <p>hi again!!!</p>
+    <p th:text="${timesheet.startTime}"></p>
+    <p th:text="${timesheet.endTime}"></p>
+    <p th:text="${timesheet.hoursWorked}"></p>
+    <!--<p>Weekly Pay</p>-->
+    <!--<p th:result="${timesheet.hoursWorked }"></p>-->
+</div>
 
 
 

@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import java.sql.Time;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -19,6 +21,10 @@ public class TimeSheet {
     private String payCode;
 
     private String startTime;
+
+    private String date;
+
+    private double hoursWorked;
 
     private String endTime;
     @ManyToOne
@@ -60,6 +66,29 @@ public class TimeSheet {
         this.endTime = endTime;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    //    public LocalDate getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(LocalDate date) {
+//        this.date = date;
+//    }
+
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
 
     public User getUser() {
         return user;
@@ -70,16 +99,17 @@ public class TimeSheet {
     }
     public void timeCalculate(){
 
-        Scanner keyboard = new Scanner(System.in);
-
-        int hoursWorked = keyboard.nextInt();
+//        Scanner keyboard = new Scanner(System.in);
+//
+//        int hoursWorked = keyboard.nextInt();
 
         double payRate = 45;
-        int otHours = hoursWorked - 40;
+
 
 
         //employees work more than 40hrs
         if (hoursWorked > 40){
+            double otHours = hoursWorked - 40;
             double otPay = (otHours) * (payRate * 1.5);
             double wages = (otPay) + (40 * payRate);
 
@@ -90,7 +120,7 @@ public class TimeSheet {
 
         //calculation for sick leave
         double sickLeave = 0;
-        double totalHours = (hoursWorked + otHours);
+        double totalHours = (hoursWorked);
 
         if (totalHours >= 100)
         {sickLeave = (sickLeave +2.5);}
@@ -102,5 +132,6 @@ public class TimeSheet {
         {sickLeave = (sickLeave +5);}
 
     }
+
 }
 
