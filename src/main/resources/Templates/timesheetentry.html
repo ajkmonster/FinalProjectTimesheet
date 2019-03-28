@@ -24,7 +24,7 @@
 
                     <label>Pay Code:
                         <select name="payCode" th:field="*{payCode}" required>
-                            <option value="">Regular</option>
+                             <option value="">Regular</option>
                             <option value="">Leave Without Pay</option>
                             <option value="">Annual Leave</option>
                             <option value="">Comp Time Used</option>
@@ -34,7 +34,7 @@
                             <option value="">Holiday Overtime</option>
                         </select>
                     </label>
-                    <label>Date : <input type="date" class="form-control" th:field="*{date}" placeholder="" required name="date"/></label>
+                    <label>Date : <input type="date" class="form-control" th:field="*{date}" name="date" placeholder="" required/></label>
                     <label>Start Time:
                         <input type="time" th:field="*{startTime}" step="0.25" name="startTime" width="1" placeholder="2.0" required />
                     </label>

@@ -9,11 +9,18 @@
 </head>
 <body>
 
+<div th:fragment="galaxy "class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Galaxy Master</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+</div>
+
 <!--NAVBAR STUFF-->
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="#"><h2>Galaxy Master</h2></a>
+    <a class="navbar-brand" href="#"></a>
     <span class="nav-item" sec:authorize="isAuthenticated()">Welcome, <span th:text="${#authentication.name}"></span></span>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
