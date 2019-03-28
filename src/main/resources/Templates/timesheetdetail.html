@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Pay Code</th>
+            <th>Hours Worked</th>
+        </tr>
+        <tr th:each="t : ${timesheet.tsTimes}">
+            <td th:text="${t.date}"></td>
+            <td th:text="${t.startTime}"></td>
+            <td th:text="${t.endTime}"></td>
+            <td th:text="${t.payCode}"></td>
+            <td th:text="${t.hoursWorked}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

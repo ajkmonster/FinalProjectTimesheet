@@ -128,6 +128,18 @@ public class HomeController {
         return "mytimesheet";
     }
 
+    @RequestMapping("/detailtimesheet/{id}")
+    public String updateTimesheet(@PathVariable("id") long id, Model model){
+        model.addAttribute("timesheet", timeSheetRespository.findById(id).get());
+        return "timesheetdetail";
+    }
+
+    @RequestMapping("/updatetimesheet/{id}")
+    public String editTimesheet(@PathVariable("id") long id, Model model){
+        model.addAttribute("timeSheet", timeSheetRespository.findById(id).get());
+        return "timesheetedit";
+    }
+
     @RequestMapping("/update/{id}")
     public String updateUser(@PathVariable("id") long id, Model model){
         model.addAttribute("departments", departmentRepository.findAll());

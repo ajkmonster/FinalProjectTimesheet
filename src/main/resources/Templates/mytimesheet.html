@@ -7,18 +7,20 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 
-<h1>HELLLOOO THERE</h1>
-<div th:each="timesheet : ${timesheets}">
-    <!--<p th:text="${timesheet.payCode}"></p>-->
-    <!--<p th:text="${timesheet.date}"></p>-->
-    <p>hi again!!!</p>
-
-    <p>Weekly Pay</p>
-    <!--<p th:result="${timesheet.hoursWorked }"></p>-->
-    <!--<div th:with="result=${timesheet.hoursWorked * payCode}">-->
-        <!--<span th:text="${result}"></span>-->
+<h3> Weekly Time Sheets</h3>
+    <div class="container">
+        <div th:each="timesheet : ${timesheets}">
+            <div th:fragment="car" class="card">
+                <div class="card-body">
+                    <h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>
+                    <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                    </span>
+                    <span><a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a></span>
+                </div>
+            </div>
+            <br>
+        </div>
     </div>
-</div>
 
 
 

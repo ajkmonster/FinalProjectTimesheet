@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -22,19 +22,16 @@
                 <legend>Enter Your Time</legend>
 
                 <div class="timesheet-row">
-
-
-
                     <label>Pay Code:
                         <select name="payCode"  required>
-                             <option value="45">Regular</option>
-                            <option value="0">Leave Without Pay</option>
-                            <option value="45">Annual Leave</option>
-                            <option value="45">Comp Time Used</option>
-                            <option value="0">Holiday</option>
-                            <option value="67.5">Holiday Worked</option>
-                            <option value="67.5">Regular Overtime</option>
-                            <option value="80">Holiday Overtime</option>
+                            <option>Regular</option>
+                            <option>Leave Without Pay</option>
+                            <option>Annual Leave</option>
+                            <option>Comp Time Used</option>
+                            <option>Holiday</option>
+                            <option>Holiday Worked</option>
+                            <option>Regular Overtime</option>
+                            <option>Holiday Overtime</option>
                         </select>
                     </label>
                     <label>Date : <input type="date" class="form-control" name="date" placeholder="" required/></label>

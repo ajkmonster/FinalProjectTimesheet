@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/timesheetentryprocess}" th:object="${timeSheet}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Pay Code</th>
+                <th>Hours Worked</th>
+            </tr>
+            <tr th:each="t : ${timeSheet.tsTimes}">
+                <td><input type="text" name="date" th:value="${t.date}"/></td>
+                <td><input type="text" name="startTime" th:value="${t.startTime}"/></td>
+                <td><input type="text" name="endTime" th:value="${t.endTime}"/></td>
+                <td><select name="payCode" th:value="${t.payCode}" required>
+                    <option>Regular</option>
+                    <option>Leave Without Pay</option>
+                    <option>Annual Leave</option>
+                    <option>Comp Time Used</option>
+                    <option>Holiday</option>
+                    <option>Holiday Worked</option>
+                    <option>Regular Overtime</option>
+                    <option>Holiday Overtime</option>
+                </select></td>
+                <td><input type="number" name="hours" th:value="${t.hoursWorked}"/></td>
+            </tr>
+        </table>
+        <input class="btn-sm btn-success btn" type="submit" name="SUBMIT"/><br/><br/>
+    </form>
+</div>
+</body>
+</html>
