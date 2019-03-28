@@ -63,7 +63,7 @@ public class User {
     private Collection<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    public Set<TimeSheet> timesheet;
+    public Set<TimeSheet> timeSheet;
 
     public User() {
     }
@@ -207,12 +207,12 @@ public class User {
         this.department = department;
     }
 
-    public Set<TimeSheet> getTimesheet() {
-        return timesheet;
+    public Set<TimeSheet> getTimeSheet() {
+        return timeSheet;
     }
 
-    public void setTimesheet(Set<TimeSheet> timesheet) {
-        this.timesheet = timesheet;
+    public void setTimeSheet(Set<TimeSheet> timeSheet) {
+        this.timeSheet = timeSheet;
     }
 
 }

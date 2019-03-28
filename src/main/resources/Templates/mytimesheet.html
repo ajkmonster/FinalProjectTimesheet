@@ -12,13 +12,11 @@
     <!--<p th:text="${timesheet.payCode}"></p>-->
     <!--<p th:text="${timesheet.date}"></p>-->
     <p>hi again!!!</p>
-    <p th:text="${timesheet.startTime}"></p>
-    <p th:text="${timesheet.endTime}"></p>
-    <p th:text="${timesheet.hoursWorked}"></p>
+
     <p>Weekly Pay</p>
     <!--<p th:result="${timesheet.hoursWorked }"></p>-->
-    <div th:with="result=${timesheet.hoursWorked * 45}">
-        <span th:text="${result}"></span>
+    <!--<div th:with="result=${timesheet.hoursWorked * payCode}">-->
+        <!--<span th:text="${result}"></span>-->
     </div>
 </div>
 

@@ -24,6 +24,8 @@ public class HomeController {
     TimeSheetRespository timeSheetRespository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    TSTimesRepository tsTimesRepository;
     @RequestMapping ("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
@@ -87,12 +89,12 @@ public class HomeController {
 
     @GetMapping("/timesheetentry")
     public String timesheetentry(Model model){
-    model.addAttribute("timesheet",new TimeSheet());
-    model.addAttribute("tstimes", new TSTimes());
+    model.addAttribute("timeSheet",new TimeSheet());
+//    model.addAttribute("tstimes", new TSTimes());
     return "timesheetentry";
     }
     @PostMapping("/timesheetentryprocess")
-    public String timesheetentryprocess(@ModelAttribute("timesheet") TimeSheet timeSheet , @ModelAttribute("tstimes") TSTimes[] times,
+    public String timesheetentryprocess(@ModelAttribute("timeSheet") TimeSheet timeSheet ,
                                         @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
                                         @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model) {
 
@@ -102,14 +104,26 @@ public class HomeController {
 //        DateTimeFormatter df = new DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
 //        LocalDate timesheetDate = LocalDate.parse(date, df);
 //        timeSheet.setDate(timesheetDate);
-        times = new TSTimes[times.length];
+        TSTimes[] times = new TSTimes[date.length];
         for (int i=0;i<times.length;i++){
             TSTimes t = new TSTimes(paycode[i],starttime[i],date[i],hours[i],endtime[i]);
+            tsTimesRepository.save(t);
             times[i]=t;
         }
+
         timeSheet.setTsTimes(times);
         timeSheet.setUser(userService.getUser());
         timeSheetRespository.save(timeSheet);
+
+
+        for(TSTimes t : timeSheet.getTsTimes()){
+            t.setTimeSheet(timeSheet);
+            tsTimesRepository.save(t);
+        }
+
+        ArrayList<TimeSheet> results = (ArrayList<TimeSheet>)
+                timeSheetRespository.findByUser(userService.getUser());
+        model.addAttribute("timesheets",results);
         return "mytimesheet";
     }
 
@@ -132,6 +146,8 @@ public class HomeController {
         model.addAttribute("user",user);
         return "redirect:/personalinfo";
     }
+
+
 
 
 
