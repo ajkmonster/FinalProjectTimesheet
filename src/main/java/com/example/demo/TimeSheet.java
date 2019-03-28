@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Time;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class TimeSheet {
 
     @OneToMany(mappedBy = "timesheet", cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER)
-    public Set<TSTimes> tsTimes;
+    public TSTimes[] tsTimes;
 
     @ManyToOne
     private User user;
@@ -51,11 +52,11 @@ public class TimeSheet {
         this.id = id;
     }
 
-    public Set<TSTimes> getTsTimes() {
+    public TSTimes[] getTsTimes() {
         return tsTimes;
     }
 
-    public void setTsTimes(Set<TSTimes> tsTimes) {
+    public void setTsTimes(TSTimes[] tsTimes) {
         this.tsTimes = tsTimes;
     }
 

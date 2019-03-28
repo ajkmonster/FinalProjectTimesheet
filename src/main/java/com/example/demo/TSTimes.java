@@ -8,7 +8,6 @@ import java.sql.Time;
 public class TSTimes {
 
 
-    private double payRate = 45;
     private String payCode;
 
     private String startTime;
@@ -73,13 +72,6 @@ public class TSTimes {
     public void setTimeSheet(TimeSheet timeSheet) {
         this.timeSheet = timeSheet;
     }
-    public double getPayRate() {
-        return payRate;
-    }
-
-    public void setPayRate(double payRate) {
-        this.payRate = payRate;
-    }
     public void timeCalculate(){
 
 //        Scanner keyboard = new Scanner(System.in);
@@ -93,12 +85,12 @@ public class TSTimes {
         //employees work more than 40hrs
         if (hoursWorked > 40){
             double otHours = hoursWorked - 40;
-            double otPay = (otHours) * (payRate * 1.5);
-            double wages = (otPay) + (40 * payRate);
+            double otPay = (otHours) * (45 * 1.5);
+            double wages = (otPay) + (40 * 45);
 
             //employees who work no overtime
         } else if (hoursWorked <= 40){
-            double wkPay = (hoursWorked) * (payRate);
+            double wkPay = (hoursWorked) * (45);
         }
 
         //calculation for sick leave
