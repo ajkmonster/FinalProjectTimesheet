@@ -14,6 +14,9 @@ import java.util.Scanner;
 
 @Entity
 public class TimeSheet {
+
+    private double payRate = 45;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -30,8 +33,18 @@ public class TimeSheet {
     @ManyToOne
     private User user;
 
+
+
     public TimeSheet(){
 
+    }
+
+    public double getPayRate() {
+        return payRate;
+    }
+
+    public void setPayRate(double payRate) {
+        this.payRate = payRate;
     }
 
     public long getId() {
@@ -103,7 +116,6 @@ public class TimeSheet {
 //
 //        int hoursWorked = keyboard.nextInt();
 
-        double payRate = 45;
 
 
 
