@@ -1,14 +1,17 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import com.sun.javafx.beans.IDProperty;
+
+import javax.persistence.*;
 import java.sql.Time;
 
 @Entity
 public class TSTimes {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    private double payRate = 45;
     private String payCode;
 
     private String startTime;
@@ -24,6 +27,14 @@ public class TSTimes {
 
     public TSTimes(){
 
+    }
+
+    public TSTimes(String payCode, String startTime, String date, double hoursWorked, String endTime) {
+        this.payCode = payCode;
+        this.startTime = startTime;
+        this.date = date;
+        this.hoursWorked = hoursWorked;
+        this.endTime = endTime;
     }
 
     public String getPayCode() {
@@ -73,13 +84,15 @@ public class TSTimes {
     public void setTimeSheet(TimeSheet timeSheet) {
         this.timeSheet = timeSheet;
     }
-    public double getPayRate() {
-        return payRate;
+
+    public long getId() {
+        return id;
     }
 
-    public void setPayRate(double payRate) {
-        this.payRate = payRate;
+    public void setId(long id) {
+        this.id = id;
     }
+
     public void timeCalculate(){
 
 //        Scanner keyboard = new Scanner(System.in);
@@ -93,12 +106,12 @@ public class TSTimes {
         //employees work more than 40hrs
         if (hoursWorked > 40){
             double otHours = hoursWorked - 40;
-            double otPay = (otHours) * (payRate * 1.5);
-            double wages = (otPay) + (40 * payRate);
+            double otPay = (otHours) * (45 * 1.5);
+            double wages = (otPay) + (40 * 45);
 
             //employees who work no overtime
         } else if (hoursWorked <= 40){
-            double wkPay = (hoursWorked) * (payRate);
+            double wkPay = (hoursWorked) * (45);
         }
 
         //calculation for sick leave

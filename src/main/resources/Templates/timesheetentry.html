@@ -16,7 +16,7 @@
     <div class="container">
 
         <h2 align="center">Enter Your Time</h2>
-        <form action="#" th:action="@{/timesheetentryprocess}" method="post">
+        <form action="#" th:action="@{/timesheetentryprocess}" th:object="${tstimes}" method="post">
             <fieldset id="timesheet-rows" name="tsTimes">
                 <legend>Enter Your Time</legend>
 
@@ -34,11 +34,12 @@
                             <option value="">Holiday Overtime</option>
                         </select>
                     </label>
+                    <label>Date : <input type="date" class="form-control" th:field="*{date}" placeholder="" required name="date"/></label>
                     <label>Start Time:
-                        <input type="number" th:field="*{startTime}" step="0.25" name="startTime width="1" placeholder="2.0" required />
+                        <input type="time" th:field="*{startTime}" step="0.25" name="startTime" width="1" placeholder="2.0" required />
                     </label>
                     <label>End Time:
-                        <input type="number" th:field="*{endTime}" step="0.25" name="endTime" width="1" placeholder="2.0" required />
+                        <input type="time" th:field="*{endTime}" step="0.25" name="endTime" width="1" placeholder="2.0" required />
                     </label>
 
                     <label>Hours:
@@ -49,27 +50,7 @@
 
                 <input type="button" id="add-row" name="add-row" value="Add row" />
             </fieldset>
-
-            <!--Pay Codes : <select class="form-control" th:field="*{payCode}">-->
-            <!--<option value="">Regular</option>-->
-            <!--<option value="">Leave Without Pay</option>-->
-            <!--<option value="">Annual Leave</option>-->
-            <!--<option value="">Comp Time Used</option>-->
-            <!--<option value="">Holiday</option>-->
-            <!--<option value="">Holiday Worked</option>-->
-            <!--<option value="">Regular Overtime</option>-->
-            <!--<option value="">Holiday Overtime</option>-->
-
-        <!--</select><br/>-->
-
-            <!--Date : <input type="date" class="form-control" th:field="*{date}" placeholder="" required name="date"/><br/>-->
-
-            <!--Start Time : <input type="time" class="form-control" th:field="*{startTime}" placeholder="Enter Start Time" required/><br/>-->
-
-            <!--End Time : <input type="time" class="form-control" th:field="*{endTime}" placeholder="Enter End Time" required/><br/>-->
-
-            <!--Total Hours Worked : <input type="number" class="form-control" th:field="*{hoursWorked}" placeholder="Enter total hours" required/><br/>-->
-
+            <br>
             <input class="btn-sm btn-success btn" type="submit" name="SUBMIT"/><br/><br/>
         </form>
 
