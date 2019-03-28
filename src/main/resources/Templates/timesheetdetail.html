@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head th:replace="base :: headstuff">
 </head>
 <body>
+<nav th:replace="base :: navbar"></nav>
+<h3> Weekly Time Sheets</h3>
+<!--<div class="container">-->
+    <!--<div th:each="timesheet : ${timesheets}">-->
+        <!--<div th:fragment="car" class="card">-->
+            <!--<div class="card-body">-->
+                <!--<h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>-->
+                <!--<span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>-->
+                    <!--</span>-->
+                <!--<span><a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a></span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<br>-->
+    <!--</div>-->
+<!--</div>-->
+
+
 <div>
     <table>
         <tr>
@@ -23,4 +40,7 @@
     </table>
 </div>
 </body>
+
+<nav th:replace="base :: foot"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
 </html>

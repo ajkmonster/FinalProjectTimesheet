@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head th:replace="base :: headstuff">
 </head>
 <body>
+<nav th:replace="base :: navbar"></nav>
+
 <div>
     <form action="#" th:action="@{/timesheetentryprocess}" th:object="${timeSheet}" method="post">
         <input type="hidden" th:field="*{id}"/>
@@ -35,5 +37,8 @@
         <input class="btn-sm btn-success btn" type="submit" name="SUBMIT"/><br/><br/>
     </form>
 </div>
+
+<nav th:replace="base :: foot"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
 </body>
 </html>

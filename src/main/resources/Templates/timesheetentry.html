@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div class="jumbotron jumbotron-fluid">
+<nav th:replace="base :: navbar"></nav>
     <div class="container">
 
         <h2 align="center">Enter Your Time</h2>
@@ -58,6 +58,9 @@
 
     </div>
 </div>
+
+<nav th:replace="base :: foot"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
 <script th:src="@{/tsform.js}"></script>
 
 </body>
