@@ -108,6 +108,7 @@ public class HomeController {
             times[i]=t;
         }
         timeSheet.setTsTimes(times);
+        timeSheet.setStatus(0);
         timeSheet.setUser(userService.getUser());
         timeSheetRespository.save(timeSheet);
         return "mytimesheet";
