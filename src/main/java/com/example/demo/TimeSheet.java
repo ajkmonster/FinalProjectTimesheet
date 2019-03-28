@@ -23,7 +23,7 @@ public class TimeSheet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy = "timesheet", cascade = CascadeType.REMOVE,
+    @OneToMany(mappedBy = "timeSheet", cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER)
     public TSTimes[] tsTimes;
 

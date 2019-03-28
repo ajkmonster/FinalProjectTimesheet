@@ -1,12 +1,16 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import com.sun.javafx.beans.IDProperty;
+
+import javax.persistence.*;
 import java.sql.Time;
 
 @Entity
 public class TSTimes {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String payCode;
 
@@ -23,6 +27,14 @@ public class TSTimes {
 
     public TSTimes(){
 
+    }
+
+    public TSTimes(String payCode, String startTime, String date, double hoursWorked, String endTime) {
+        this.payCode = payCode;
+        this.startTime = startTime;
+        this.date = date;
+        this.hoursWorked = hoursWorked;
+        this.endTime = endTime;
     }
 
     public String getPayCode() {
@@ -72,6 +84,16 @@ public class TSTimes {
     public void setTimeSheet(TimeSheet timeSheet) {
         this.timeSheet = timeSheet;
     }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void timeCalculate(){
 
 //        Scanner keyboard = new Scanner(System.in);
