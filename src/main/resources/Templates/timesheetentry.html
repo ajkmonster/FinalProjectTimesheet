@@ -23,8 +23,8 @@
                 <div class="timesheet-row">
 
                     <label>Pay Code:
-                        <select name="payCode" th:field="*{payCode}">
-                            <option value="">Regular</option>
+                        <select name="payCode" th:field="*{payCode}" required>
+                             <option value="">Regular</option>
                             <option value="">Leave Without Pay</option>
                             <option value="">Annual Leave</option>
                             <option value="">Comp Time Used</option>
