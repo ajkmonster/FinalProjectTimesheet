@@ -92,15 +92,22 @@ public class HomeController {
     return "timesheetentry";
     }
     @PostMapping("/timesheetentryprocess")
-    public String timesheetentryprocess(@ModelAttribute("timesheet") TimeSheet timeSheet ,
-                                          Model model
-    ) {
+    public String timesheetentryprocess(@ModelAttribute("timesheet") TimeSheet timeSheet , @ModelAttribute("tstimes") TSTimes[] times,
+                                        @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
+                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model) {
+
 //        if (result.hasErrors()) {
 //            return "timesheetentry";
 //        }
 //        DateTimeFormatter df = new DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
 //        LocalDate timesheetDate = LocalDate.parse(date, df);
 //        timeSheet.setDate(timesheetDate);
+        times = new TSTimes[times.length];
+        for (int i=0;i<times.length;i++){
+            TSTimes t = new TSTimes(paycode[i],starttime[i],date[i],hours[i],endtime[i]);
+            times[i]=t;
+        }
+        timeSheet.setTsTimes(times);
         timeSheet.setUser(userService.getUser());
         timeSheetRespository.save(timeSheet);
         return "mytimesheet";

@@ -23,7 +23,7 @@
                 <div class="timesheet-row">
 
                     <label>Pay Code:
-                        <select name="payCode[]" th:field="*{payCode}" required>
+                        <select name="payCode" th:field="*{payCode}" required>
                             <option value="">Regular</option>
                             <option value="">Leave Without Pay</option>
                             <option value="">Annual Leave</option>
@@ -43,7 +43,7 @@
                     </label>
 
                     <label>Hours:
-                        <input type="number" th:field="*{hoursWorked}" step="0.25" name="hours[]" width="1" placeholder="2.0" required />
+                        <input type="number" th:field="*{hoursWorked}" step="0.25" name="hours" width="1" placeholder="2.0" required />
                     </label>
 
                 </div>
