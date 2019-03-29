@@ -5,6 +5,8 @@
 </head>
 
 <body>
+<div th:replace="base :: galaxy"></div>
+
 <nav th:replace="base :: navbar"></nav>
 
 <h3> Approved Time Sheets</h3>
@@ -13,8 +15,9 @@
 <div class="container">
         <div th:fragment="car" class="card">
             <div class="card-body">
-                <h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>
-
+                <span class="card-text"><b>Timesheet Number: </b><a th:text="${timesheet.id} "></a></span>
+                <span class="card-text"><b>Employee: </b><a th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></a></span>
+                <br>
                 <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
                     </span>
 
@@ -30,12 +33,15 @@
         <div class="container">
             <div th:fragment="car" class="card">
                 <div class="card-body">
-                    <h5>Timesheet Number:</h5><span class="card-text" th:text="${timesheet.id} "></span>
-                    <h5>Employee: </h5><span class="card-text" th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></span>
-                    <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                    <span class="card-text"><b>Timesheet Number: </b><a th:text="${timesheet.id} "></a></span>
+                    <span class="card-text"><b>Employee: </b><a th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></a></span>
+                    <br>
+                    <span class="card-text">
+                        <a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                        <div th:if="${timesheet.status == 2 || timesheet.status == 0}">
+                            <a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a>
+                        </div>
                     </span>
-                    <div th:if="${timesheet.status == 2 || timesheet.status == 0}">
-                        <span><a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a></span>
                     </div>
                 </div>
             </div>
@@ -49,7 +55,9 @@
         <div class="container">
             <div th:fragment="car" class="card">
                 <div class="card-body">
-                    <h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>
+                    <span class="card-text"><b>Timesheet Number: </b><a th:text="${timesheet.id} "></a></span>
+                    <span class="card-text"><b>Employee: </b><a th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></a></span>
+                    <br>
                     <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
                     </span>
                 </div>

@@ -6,15 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Galaxy Master</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Poppins" rel="stylesheet">
+    <style>
+        .jumbotron {
+            margin-top: 20px;
+            background-image: url("https://res.cloudinary.com/dh18h6lff/image/upload/v1553885035/company.jpg");
+            background-size:cover;
+            color: black;
+            margin-bottom: 0px;
+        }
+
+        .headerfont{
+            font-family: 'Kaushan Script', cursive;}
+
+        .timesheetfont{
+            font-family: 'Poppins', sans-serif;}
+
+    </style>
 </head>
 <body>
 
-<div th:fragment="galaxy "class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Galaxy Master</h1>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-    </div>
+<div class="container">
+
+<div th:fragment="galaxy" class="jumbotron">
+    <h3 class="headerfont" align="center">Galaxy Master</h3>
+    <p class="timesheetfont" align="center">Timesheet Workflow Application</p><br/>
 </div>
+
 
 <!--NAVBAR STUFF-->
 
