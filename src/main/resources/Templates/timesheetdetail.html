@@ -77,9 +77,18 @@
                             <input type=hidden name="payCode" th:value="${t.payCode}"></input>
                             <input type=hidden name="hours" th:value="${t.hoursWorked}"></input>
                         </div>
+                            <textarea name="reasonText" value="reasonText" style="width:200px; height:300px;"></textarea><br/>
                         <button type="submit" class="btn btn-danger" >Reject</button>
+
                     </form>
                     </span>
+                <!--<form action="/sendSimpleEmail" method="post">-->
+
+                    <!--<h2>Enter the reason</h2>-->
+                    <!---->
+                    <!--<button type="submit">Send Email</button>-->
+                <!--</form>-->
+
             </div>
         </div>
     </div>

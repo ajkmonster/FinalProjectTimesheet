@@ -19,6 +19,11 @@ import java.util.Set;
 @Controller
 public class HomeController {
     @Autowired
+    EmailService emailService;
+
+
+
+    @Autowired
     private UserService userService;
     @Autowired
     DepartmentRepository departmentRepository;
@@ -209,7 +214,7 @@ public class HomeController {
     @PostMapping("/reject")
     public String timesheetentryreject(@ModelAttribute("timeSheet") TimeSheet timeSheet ,
                                         @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
-                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model) {
+                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model, @RequestParam("reasonText") String reasonText) {
 
         TSTimes[] times = new TSTimes[date.length];
         for (int i=0;i<times.length;i++){
@@ -228,7 +233,11 @@ public class HomeController {
             t.setTimeSheet(timeSheet);
             tsTimesRepository.save(t);
         }
+        Email email = new Email();
+        email.setReasonText(reasonText);
+        emailService.SendSimpleEmail(email);
         return "redirect:/tslist";
     }
+
 
 }
