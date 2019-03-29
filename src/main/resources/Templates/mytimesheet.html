@@ -15,13 +15,13 @@
                 <div class="card-body">
                     <h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>
                     <div th:if="${timesheet.status == 0}">
-                        <button type="button" class="btn btn-warning">Pending</button>
+                        <button type="button" class="btn btn-warning" disabled>Pending</button>
                     </div>
                     <div th:if="${timesheet.status == 1}">
-                        <button type="button" class="btn btn-success">Approved</button>
+                        <button type="button" class="btn btn-success" disabled>Approved</button>
                     </div>
                     <div th:if="${timesheet.status == 2}">
-                        <button type="button" class="btn btn-danger">Rejected</button>
+                        <button type="button" class="btn btn-danger" th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Rejected</button>
                     </div>
                     <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
                     </span>

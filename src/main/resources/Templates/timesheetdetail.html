@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head th:replace="base :: headstuff">
 </head>
@@ -29,6 +29,7 @@
             <th>End Time</th>
             <th>Pay Code</th>
             <th>Hours Worked</th>
+
         </tr>
         <tr th:each="t : ${timesheet.tsTimes}">
             <td th:text="${t.date}"></td>
@@ -38,7 +39,52 @@
             <td th:text="${t.hoursWorked}"></td>
         </tr>
     </table>
+    <br>
+    <div th:if="${timesheet.status == 0}">
+        <button type="button" class="btn btn-warning" disabled>Pending</button>
+    </div>
+    <br>
+    <div th:if="${timesheet.status == 1}">
+    <button type="button" class="btn btn-success" disabled>Approved</button>
+    </div>
+    <div th:if="${timesheet.status == 2}">
+        <button type="button" class="btn btn-danger" disabled>Rejected</button>
+    </div>
+    <div sec:authorize="hasAuthority('SUPER')">
+        <div th:if="${timesheet.user.department == userCurrent.department}">
+            <div th:if="${timesheet.status == 0}">
+                    <span>
+                        <form action="#" th:action="@{/approve}" th:object="${timesheet}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+                        <div th:each="t : ${timesheet.tsTimes}">
+                            <input type="hidden" name>
+                            <input type=hidden name="date" th:value="${t.date}"></input>
+                            <input type=hidden name="startTime" th:value="${t.startTime}"></input>
+                            <input type=hidden name="endTime" th:value="${t.endTime}"></input>
+                            <input type=hidden name="payCode" th:value="${t.payCode}"></input>
+                            <input type=hidden name="hours" th:value="${t.hoursWorked}"></input>
+                        </div>
+                        <button type="submit" class="btn btn-success" >Approve</button>
+                    </form>
+                    &nbsp;
+                        <form action="#" th:action="@{/reject}" th:object="${timesheet}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+                        <div th:each="t : ${timesheet.tsTimes}">
+                            <input type="hidden" name>
+                            <input type=hidden name="date" th:value="${t.date}"></input>
+                            <input type=hidden name="startTime" th:value="${t.startTime}"></input>
+                            <input type=hidden name="endTime" th:value="${t.endTime}"></input>
+                            <input type=hidden name="payCode" th:value="${t.payCode}"></input>
+                            <input type=hidden name="hours" th:value="${t.hoursWorked}"></input>
+                        </div>
+                        <button type="submit" class="btn btn-danger" >Reject</button>
+                    </form>
+                    </span>
+            </div>
+        </div>
+    </div>
 </div>
+
 </body>
 
 <nav th:replace="base :: foot"></nav>
