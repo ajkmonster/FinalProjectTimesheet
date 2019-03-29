@@ -24,7 +24,8 @@
                 <td><input type="text" name="startTime" th:value="${t.startTime}"/></td>
                 <td><input type="text" name="endTime" th:value="${t.endTime}"/></td>
                 <td><select name="payCode" th:value="${t.payCode}" required>
-                    <option>Regular</option>
+                    <option th:value="${t.payCode}" th:text="${t.payCode}"></option>
+                    <option >Regular</option>
                     <option>Leave Without Pay</option>
                     <option>Annual Leave</option>
                     <option>Comp Time Used</option>

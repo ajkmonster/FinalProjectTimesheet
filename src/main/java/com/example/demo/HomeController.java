@@ -55,7 +55,7 @@ public class HomeController {
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
-        return "index";
+        return "login";
     }
 
 
@@ -190,7 +190,7 @@ public class HomeController {
     @PostMapping("/approve")
     public String timesheetentryapprove(@ModelAttribute("timesheet") TimeSheet timeSheet ,
                                         @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
-                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model) {
+                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, @RequestParam("id") long id, Model model) {
 
         TSTimes[] times = new TSTimes[date.length];
         for (int i=0;i<times.length;i++){
@@ -201,7 +201,7 @@ public class HomeController {
 
         timeSheet.setTsTimes(times);
         timeSheet.setStatus(1);
-        timeSheet.setUser(userService.getUser());
+        timeSheet.setUser(timeSheetRespository.findById(id).get().getUser());
         timeSheetRespository.save(timeSheet);
 
 
@@ -213,7 +213,7 @@ public class HomeController {
     }
     @PostMapping("/reject")
     public String timesheetentryreject(@ModelAttribute("timeSheet") TimeSheet timeSheet ,
-                                        @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
+                                        @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,@RequestParam("id") long id,
                                         @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model, @RequestParam("reasonText") String reasonText) {
 
         TSTimes[] times = new TSTimes[date.length];
@@ -225,7 +225,7 @@ public class HomeController {
 
         timeSheet.setTsTimes(times);
         timeSheet.setStatus(2);
-        timeSheet.setUser(userService.getUser());
+        timeSheet.setUser(timeSheetRespository.findById(id).get().getUser());
         timeSheetRespository.save(timeSheet);
 
 

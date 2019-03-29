@@ -57,7 +57,7 @@
             <div th:if="${timesheet.status == 0}">
                     <span>
                         <form action="#" th:action="@{/approve}" th:object="${timesheet}" method="post">
-                        <input type="hidden" th:field="*{id}"/>
+                        <input type="hidden" name="id" th:value="${id}"/>
                         <div th:each="t : ${timesheet.tsTimes}">
                             <input type="hidden" name>
                             <input type=hidden name="date" th:value="${t.date}"></input>
@@ -70,7 +70,7 @@
                     </form>
                     &nbsp;
                         <form action="#" th:action="@{/reject}" th:object="${timesheet}" method="post">
-                        <input type="hidden" th:field="*{id}"/>
+                        <input type="hidden" name="id" th:value="${id}"/>
                         <div th:each="t : ${timesheet.tsTimes}">
                             <input type="hidden" name>
                             <input type=hidden name="date" th:value="${t.date}"></input>
