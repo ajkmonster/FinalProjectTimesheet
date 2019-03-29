@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FinalProjectTimesheet1Application {
+public class FinalProjectTimesheetApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FinalProjectTimesheet1Application.class, args);
+        SpringApplication.run(FinalProjectTimesheetApplication.class, args);
     }
 
 }

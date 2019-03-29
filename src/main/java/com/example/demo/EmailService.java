@@ -59,7 +59,7 @@ public class EmailService {
         return templateEngine.process("mailtemplate", context);
     }
 
-    public void SendSimpleEmail () {
+    public void SendSimpleEmail (Email email) {
         try {
             Message message = new MimeMessage(GetSession());
 
@@ -70,10 +70,14 @@ public class EmailService {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("christovarghese121@gmail.com"));
 
             //email  subject
-            message.setSubject("Kindly correct your timesheet");
+            message.setSubject("TIMESHEET REJECTED");
+
+/*
+                message.setText("Kindly correct your timesheet");
+*/
 
             //email content
-            message.setText("Kindly correct your timesheet");
+            message.setText(email.getReasonText());
 
             Transport.send(message);
 
