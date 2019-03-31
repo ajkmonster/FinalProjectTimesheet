@@ -55,7 +55,7 @@ public class HomeController {
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
-        return "login";
+        return "redirect:/login";
     }
 
 
@@ -66,7 +66,7 @@ public class HomeController {
         model.addAttribute("myuser",myuser);
         return "index";
     }
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login(Model model){
 
         return "login";
@@ -238,6 +238,22 @@ public class HomeController {
         emailService.SendSimpleEmail(email);
         return "redirect:/tslist";
     }
-
+    @RequestMapping("/paystub")
+    public String paystub(Model model){
+        double totalhours = 0;
+        ArrayList<TimeSheet> timeSheets =(ArrayList<TimeSheet>)timeSheetRespository.findByUser(userService.getUser());
+        for (TimeSheet t : timeSheets){
+            if(t.getStatus()== 1){
+                for (TSTimes x : t.tsTimes){
+                    totalhours= totalhours + x.getHoursWorked();
+                }
+                t.setTotalhours(totalhours);
+                timeSheetRespository.save(t);
+            }
+        }
+        model.addAttribute("user",userService.getUser());
+        model.addAttribute("timesheets", timeSheets);
+        return "paystub";
+    }
 
 }

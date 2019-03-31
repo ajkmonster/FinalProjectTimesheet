@@ -9,9 +9,10 @@
 
 <nav th:replace="base :: navbar"></nav>
 
-<h3> Weekly Time Sheets</h3>
+
 
     <div class="container">
+        <h3> Weekly Time Sheets</h3>
         <div th:each="timesheet : ${timesheets}">
             <div th:fragment="car" class="card">
                 <div class="card-body">
@@ -39,7 +40,7 @@
 
 
 
-<nav th:replace="base :: foot"></nav>
+<div th:replace="base :: foot"></div>
 <th:block th:replace="base :: jslinks"></th:block>
 
 

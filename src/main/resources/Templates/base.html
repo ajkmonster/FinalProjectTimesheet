@@ -15,7 +15,6 @@
             color: black;
             margin-bottom: 0px;
         }
-
         .headerfont{
             font-family: 'Kaushan Script', cursive;}
 
@@ -26,7 +25,6 @@
 </head>
 <body>
 
-<div class="container">
 
 <div th:fragment="galaxy" class="jumbotron">
     <h3 class="headerfont" align="center">Galaxy Master</h3>
@@ -52,6 +50,7 @@
                 <a class="nav-item nav-link" href="/mytimesheet">My Timesheets</a>
                 <a class="nav-item nav-link" href="/personalinfo">Info</a>
                 <a class="nav-item nav-link" href="/timesheetentry">Enter Timesheet</a>
+                <a class="nav-item nav-link" href="/paystub">Paystubs</a>
                 <!--<a class="nav-item nav-link" href="/personalinfo">Pricing</a>-->
                 <div sec:authorize="hasAuthority('SUPER')">
                     <a class="nav-item nav-link" href="/tslist">List of Timesheets</a>
@@ -70,16 +69,13 @@
 
 <!--FOOTER STUFF-->
 
-<nav class="navbar navbar-default navbar-fixed-bottom"
-     th:fragment="foot">
-    <div class="container">
-        <hr class="m4-4">
-        <footer class="footer">
-            <p>&copy; Galaxy Master 2019</p>
-        </footer>
-    </div>
-</nav>
-
+<div th:fragment="foot">
+    <footer class="footer mt-auto py-3" >
+        <div class="container">
+            <span class="text-muted text-center">&copy; Galaxy Master 2019</span>
+        </div>
+    </footer>
+</div>
 <!--END FOOTER STUFF-->
 
 <!--JAVASCRIPT STUFF-->
