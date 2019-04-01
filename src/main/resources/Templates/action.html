@@ -8,10 +8,10 @@
 <nav th:replace="base :: navbar"></nav>
 
 <div class="container"><h2>Action's Taken</h2>
-    <div th:each="a : ${action}">
-        <p th:text="${a.currenttime}"></p>
-        <p th:text="${a.action}"></p>
-    </div>
+    <span th:each="a : ${actions}">
+        <a th:text="${a.currenttime}"></a>
+        <a th:text="${a.action}"></a>
+    </span>
 </div>
 
 
