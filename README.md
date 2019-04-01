@@ -1,3 +1,5 @@
+![Screenshot](https://res.cloudinary.com/dh18h6lff/image/upload/v1554127013/Home.png)
+
 This timesheet application allows an employer to track the hours worked by their employees.
 
 Users(employees) log their daily time & edit their timesheet at any time before submission. 
@@ -11,3 +13,5 @@ After a supervisor approves a timesheet, a pay stub is generated with the employ
 Supervisors can view a list of all their employee's timesheets.
 
 Timesheets older than two years are archived.
+
+
