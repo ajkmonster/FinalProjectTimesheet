@@ -9,13 +9,20 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Set;
 
 @Controller
 public class HomeController {
+    @Autowired
+    EmailService emailService;
+
+
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -48,7 +55,7 @@ public class HomeController {
             userService.saveUser(user);
             model.addAttribute("message", "User Account Created");
         }
-        return "index";
+        return "redirect:/login";
     }
 
 
@@ -59,7 +66,7 @@ public class HomeController {
         model.addAttribute("myuser",myuser);
         return "index";
     }
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login(Model model){
 
         return "login";
@@ -128,6 +135,19 @@ public class HomeController {
         return "mytimesheet";
     }
 
+    @RequestMapping("/detailtimesheet/{id}")
+    public String updateTimesheet(@PathVariable("id") long id, Model model){
+        model.addAttribute("timesheet", timeSheetRespository.findById(id).get());
+        model.addAttribute("userCurrent",userService.getUser());
+        return "timesheetdetail";
+    }
+
+    @RequestMapping("/updatetimesheet/{id}")
+    public String editTimesheet(@PathVariable("id") long id, Model model){
+        model.addAttribute("timeSheet", timeSheetRespository.findById(id).get());
+        return "timesheetedit";
+    }
+
     @RequestMapping("/update/{id}")
     public String updateUser(@PathVariable("id") long id, Model model){
         model.addAttribute("departments", departmentRepository.findAll());
@@ -147,9 +167,93 @@ public class HomeController {
         model.addAttribute("user",user);
         return "redirect:/personalinfo";
     }
+    @RequestMapping("/tslist")
+    public String pullInformation(Model model)
+    {
+        model.addAttribute("supervisor",userService.getUser());
+        User supervisor = userService.getUser();
+        ArrayList<User> results = (ArrayList<User>)
+               userRepository.findByDepartment(supervisor.department);
+        model.addAttribute("users",results);
+        int x =0;
+        ArrayList<TimeSheet> resultstimesheet = new ArrayList<TimeSheet>();
+        for(User user : results){
+            Set<TimeSheet> timesheets =user.getTimeSheet();
+            for(TimeSheet t : timesheets)
+            resultstimesheet.add(x,t);
+            x += x;
+        }
+        model.addAttribute("timesheets",resultstimesheet);
+        return "tslist";
+    }
+
+    @PostMapping("/approve")
+    public String timesheetentryapprove(@ModelAttribute("timesheet") TimeSheet timeSheet ,
+                                        @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
+                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, @RequestParam("id") long id, Model model) {
+
+        TSTimes[] times = new TSTimes[date.length];
+        for (int i=0;i<times.length;i++){
+            TSTimes t = new TSTimes(paycode[i],starttime[i],date[i],hours[i],endtime[i]);
+            tsTimesRepository.save(t);
+            times[i]=t;
+        }
+
+        timeSheet.setTsTimes(times);
+        timeSheet.setStatus(1);
+        timeSheet.setUser(timeSheetRespository.findById(id).get().getUser());
+        timeSheetRespository.save(timeSheet);
 
 
+        for(TSTimes t : timeSheet.getTsTimes()){
+            t.setTimeSheet(timeSheet);
+            tsTimesRepository.save(t);
+        }
+        return "redirect:/tslist";
+    }
+    @PostMapping("/reject")
+    public String timesheetentryreject(@ModelAttribute("timeSheet") TimeSheet timeSheet ,
+                                        @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,@RequestParam("id") long id,
+                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model, @RequestParam("reasonText") String reasonText) {
+
+        TSTimes[] times = new TSTimes[date.length];
+        for (int i=0;i<times.length;i++){
+            TSTimes t = new TSTimes(paycode[i],starttime[i],date[i],hours[i],endtime[i]);
+            tsTimesRepository.save(t);
+            times[i]=t;
+        }
+
+        timeSheet.setTsTimes(times);
+        timeSheet.setStatus(2);
+        timeSheet.setUser(timeSheetRespository.findById(id).get().getUser());
+        timeSheetRespository.save(timeSheet);
 
 
+        for(TSTimes t : timeSheet.getTsTimes()){
+            t.setTimeSheet(timeSheet);
+            tsTimesRepository.save(t);
+        }
+        Email email = new Email();
+        email.setReasonText(reasonText);
+        emailService.SendSimpleEmail(email);
+        return "redirect:/tslist";
+    }
+    @RequestMapping("/paystub")
+    public String paystub(Model model){
+        double totalhours = 0;
+        ArrayList<TimeSheet> timeSheets =(ArrayList<TimeSheet>)timeSheetRespository.findByUser(userService.getUser());
+        for (TimeSheet t : timeSheets){
+            if(t.getStatus()== 1){
+                for (TSTimes x : t.tsTimes){
+                    totalhours= totalhours + x.getHoursWorked();
+                }
+                t.setTotalhours(totalhours);
+                timeSheetRespository.save(t);
+            }
+        }
+        model.addAttribute("user",userService.getUser());
+        model.addAttribute("timesheets", timeSheets);
+        return "paystub";
+    }
 
 }

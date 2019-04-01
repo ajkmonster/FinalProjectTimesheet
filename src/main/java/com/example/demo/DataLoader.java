@@ -37,7 +37,7 @@ public class DataLoader implements CommandLineRunner {
 //        userRepository.save(user);
 //
 //        Department department = new Department("HR");
-//        user = new User("super@super.com","password","HR","Super",true,"dewefwd",
+//        user = new User("super1@super.com","password","HR","Super",true,"dewefwd",
 //                "MD","Rockville","20852","8788",department);
 //        user.setRoles(Arrays.asList(userRole));
 //        user.setRoles(Arrays.asList(superRole));
@@ -48,7 +48,7 @@ public class DataLoader implements CommandLineRunner {
 //        userRepository.save(user);
 //
 //        department = new Department("Management");
-//        user = new User("super@super.com","password","Management","Super",true,"dewefwd",
+//        user = new User("super2@super.com","password","Management","Super",true,"dewefwd",
 //                "MD","Rockville","20852","8788",department);
 //        user.setRoles(Arrays.asList(userRole));
 //        user.setRoles(Arrays.asList(superRole));
@@ -59,7 +59,7 @@ public class DataLoader implements CommandLineRunner {
 //        userRepository.save(user);
 //
 //        department = new Department("Healthcare");
-//        user = new User("super@super.com","password","Healthcare","Super",true,"dewefwd",
+//        user = new User("super3@super.com","password","Healthcare","Super",true,"dewefwd",
 //                "MD","Rockville","20852","8788",department);
 //        user.setRoles(Arrays.asList(userRole));
 //        user.setRoles(Arrays.asList(superRole));

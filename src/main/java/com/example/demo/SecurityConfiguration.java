@@ -19,6 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired private MyBasicAuthenticationEntryPoint authenticationEntryPoint;
+
     @Autowired
     private SSUserDetailsService userDetailsService;
 
@@ -35,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Restricts route access
         http.authorizeRequests()
-                .antMatchers("/h2-console/**", "/register").permitAll()
+                .antMatchers("/h2-console/**","/lpage/**", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

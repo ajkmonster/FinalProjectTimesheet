@@ -1,85 +1,192 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="www.thymeleaf.org/extras/spring-security">
-<head th:replace="base :: headstuff">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" th:href="@{/lpage/fonts/material-icon/css/material-design-iconic-font.min.css}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" th:href="@{/lpage/css/style.css}">
 </head>
 <body>
-<nav th:replace="base :: navbar"></nav>
+
+<div class="main">
+<!--<div th:replace="base :: galaxy"></div>-->
+
+<!--<nav th:replace="base :: navbar"></nav>-->
+
+<!--<div class="container">-->
+<!--    <h4>New User Registration</h4>-->
+<!--    <form class="form-group" autocomplete="off"-->
+<!--          action="#"-->
+<!--          th:action="@{/register}"-->
+<!--          th:object="${user}" method="post" >-->
+<!--        <input type="hidden" th:field="*{id}"/>-->
+
+<!--        Department<select th:field="*{department}" class="form-control input-md">-->
+<!--        <option th:each="option : ${departments}"-->
+<!--                th:value="${option.id}"></option>-->
+<!--    </select>-->
+
+<!--        First Name<strong>-->
+<!--    <span th:if="${#fields.hasErrors('firstName')}"-->
+<!--          th:errors="*{firstName}">First Name Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="firstName" placeholder="First Name"-->
+<!--               th:field="*{firstName}"/><br/>-->
+
+<!--        Last Name<strong>-->
+<!--    <span th:if="${#fields.hasErrors('lastName')}"-->
+<!--          th:errors="*{lastName}">Last Name Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="lastName" placeholder="Last Name"-->
+<!--               th:field="*{lastName}"/><br/>-->
+
+<!--        Social Security Number<strong>-->
+<!--    <span th:if="${#fields.hasErrors('social')}"-->
+<!--          th:errors="*{social}">Social Security Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="social" placeholder="Social"-->
+<!--               th:field="*{social}"/><br/>-->
+
+<!--        Street<strong>-->
+<!--    <span th:if="${#fields.hasErrors('street')}"-->
+<!--          th:errors="*{street}">Street Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="street" placeholder="street"-->
+<!--               th:field="*{street}"/><br/>-->
+
+<!--        City<strong>-->
+<!--    <span th:if="${#fields.hasErrors('city')}"-->
+<!--          th:errors="*{city}">City Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="city" placeholder="City"-->
+<!--               th:field="*{city}"/><br/>-->
+
+<!--        State<strong>-->
+<!--    <span th:if="${#fields.hasErrors('state')}"-->
+<!--          th:errors="*{state}">State Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="state" placeholder="State"-->
+<!--               th:field="*{state}"/><br/>-->
+
+<!--        Zip Code<strong>-->
+<!--    <span th:if="${#fields.hasErrors('zip')}"-->
+<!--          th:errors="*{zip}">Zip Code Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="zip" placeholder="Zip Code"-->
+<!--               th:field="*{zip}"/><br/>-->
+
+<!--        Email-->
+<!--        <strong>-->
+<!--    <span th:if="${#fields.hasErrors('email')}"-->
+<!--          th:errors="*{email}">Email Error</span></strong>-->
+<!--        <input class="form-control" type="text" id="email" placeholder="Email"-->
+<!--               th:field="*{email}"/><br/>-->
+
+<!--        Password-->
+<!--        <input class="form-control" type="password" id="password" placeholder="Password"-->
+<!--               th:field="*{password}"/><br/>-->
 
 
-    <h4>New User Registration</h4>
-    <form class="form-group" autocomplete="off"
-          action="#"
-          th:action="@{/register}"
-          th:object="${user}" method="post" >
-        <input type="hidden" th:field="*{id}"/>
 
-        Department<select th:field="*{department}" class="form-control input-md">
-        <option th:each="option : ${departments}"
-                th:value="${option.id}">[[${option.departmentName}]]</option>
-    </select>
+<!--        <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" th:action="@{/register}" th:object="${user}" class="register-form" id="register-form">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="form-group">
+                                <label for="firstName"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="firstName" id="firstName"  placeholder="First Name" th:field="*{firstName}"/>
+                                <span th:if="${#fields.hasErrors('firstName')}"
+                                      th:errors="*{firstName}">First Name Error</span>
+                            </div>
+                                <div class="form-group">
+                                    <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="lastName" id="name" placeholder="Last Name" th:field="*{lastName}"/>
+                                    <span th:if="${#fields.hasErrors('lastName')}"
+                                          th:errors="*{lastName}">Last Name Error</span>
+                                </div>
+                            <div th:each="option : ${departments}">
+                                    <div class="form-group">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" value="">[[${option.departmentName}]]
+                                        </label>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="social"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="social" id="social"  placeholder="Last 4 digits of Social" th:field="*{social}"/>
+                                <span th:if="${#fields.hasErrors('social')}"
+                                      th:errors="*{social}">Social Security Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="street"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="street" id="street"  placeholder="Street" th:field="*{street}"/>
+                                <span th:if="${#fields.hasErrors('street')}"
+                                      th:errors="*{street}">Street Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="city" id="city"  placeholder="City" th:field="*{city}"/>
+                                <span th:if="${#fields.hasErrors('city')}"
+                                      th:errors="*{city}">City Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="state"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="state" id="state"  placeholder="State" th:field="*{state}"/>
+                                <span th:if="${#fields.hasErrors('state')}"
+                                      th:errors="*{state}">State Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipcode"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="zip" id="zipcode"  placeholder="Zip Code" th:field="*{zip}"/>
+                                <span th:if="${#fields.hasErrors('zip')}"
+                                      th:errors="*{zip}">Zip Code Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" th:field="*{email}"/>
+                                <span th:if="${#fields.hasErrors('email')}"
+                                      th:errors="*{email}">Email Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password" th:field="*{password}"/>
+                            </div>
+                            <div class="form-group">
+                                <select th:field="*{department}" th:placeholder="Department" class="form-control input-md">
+                                <option th:each="option : ${departments}"
+                                        th:value="${option.id}">[[${option.departmentName}]]</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
 
-        First Name<strong>
-    <span th:if="${#fields.hasErrors('firstName')}"
-          th:errors="*{firstName}">First Name Error</span></strong>
-        <input class="form-control" type="text" id="firstName" placeholder="First Name"
-               th:field="*{firstName}"/><br/>
-
-        Last Name<strong>
-    <span th:if="${#fields.hasErrors('lastName')}"
-          th:errors="*{lastName}">Last Name Error</span></strong>
-        <input class="form-control" type="text" id="lastName" placeholder="Last Name"
-               th:field="*{lastName}"/><br/>
-
-        Social Security Number<strong>
-    <span th:if="${#fields.hasErrors('social')}"
-          th:errors="*{social}">Social Security Error</span></strong>
-        <input class="form-control" type="text" id="social" placeholder="Social"
-               th:field="*{social}"/><br/>
-
-        Street<strong>
-    <span th:if="${#fields.hasErrors('street')}"
-          th:errors="*{street}">Street Error</span></strong>
-        <input class="form-control" type="text" id="street" placeholder="street"
-               th:field="*{street}"/><br/>
-
-        City<strong>
-    <span th:if="${#fields.hasErrors('city')}"
-          th:errors="*{city}">City Error</span></strong>
-        <input class="form-control" type="text" id="city" placeholder="City"
-               th:field="*{city}"/><br/>
-
-        State<strong>
-    <span th:if="${#fields.hasErrors('state')}"
-          th:errors="*{state}">State Error</span></strong>
-        <input class="form-control" type="text" id="state" placeholder="State"
-               th:field="*{state}"/><br/>
-
-        Zip Code<strong>
-    <span th:if="${#fields.hasErrors('zip')}"
-          th:errors="*{zip}">Zip Code Error</span></strong>
-        <input class="form-control" type="text" id="zip" placeholder="Zip Code"
-               th:field="*{zip}"/><br/>
-
-        Email
-        <strong>
-    <span th:if="${#fields.hasErrors('email')}"
-          th:errors="*{email}">Email Error</span></strong>
-        <input class="form-control" type="text" id="email" placeholder="Email"
-               th:field="*{email}"/><br/>
-
-        Password
-        <input class="form-control" type="password" id="password" placeholder="Password"
-               th:field="*{password}"/><br/>
-
-
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img th:src="@{/lpage/images/signup-image.jpg}" alt="sing up image"></figure>
+                        <a href="/login" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 </div>
-
-    <nav th:replace="base :: foot"></nav>
-    <th:block th:replace="base :: jslinks"></th:block>
+    <div th:replace="base :: foot"></div>
+<th:block th:replace="base :: jslinks"></th:block>
+<script th:src="@{/lpage/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/lpage/js/main.js}"></script>
 
 </body>
 </html>

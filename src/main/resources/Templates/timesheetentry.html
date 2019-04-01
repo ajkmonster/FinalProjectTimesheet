@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" th:href="@{/style.css}" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Timesheet Entry</title>
+<head th:replace="base :: headstuff">
+    <link rel="stylesheet" th:href="@{/style.css}">
+
 </head>
 <body>
-
-<div class="jumbotron jumbotron-fluid">
+<div th:replace="base :: galaxy"></div>
+<nav th:replace="base :: navbar"></nav>
     <div class="container">
 
         <h2 align="center">Enter Your Time</h2>
@@ -22,19 +16,16 @@
                 <legend>Enter Your Time</legend>
 
                 <div class="timesheet-row">
-
-
-
                     <label>Pay Code:
                         <select name="payCode"  required>
-                             <option value="45">Regular</option>
-                            <option value="0">Leave Without Pay</option>
-                            <option value="45">Annual Leave</option>
-                            <option value="45">Comp Time Used</option>
-                            <option value="0">Holiday</option>
-                            <option value="67.5">Holiday Worked</option>
-                            <option value="67.5">Regular Overtime</option>
-                            <option value="80">Holiday Overtime</option>
+                            <option>Regular</option>
+                            <option>Leave Without Pay</option>
+                            <option>Annual Leave</option>
+                            <option>Comp Time Used</option>
+                            <option>Holiday</option>
+                            <option>Holiday Worked</option>
+                            <option>Regular Overtime</option>
+                            <option>Holiday Overtime</option>
                         </select>
                     </label>
                     <label>Date : <input type="date" class="form-control" name="date" placeholder="" required/></label>
@@ -61,7 +52,11 @@
 
     </div>
 </div>
+
+<div th:replace="base :: foot"></div>
 <script th:src="@{/tsform.js}"></script>
+<th:block th:replace="base :: jslinks"></th:block>
+
 
 </body>
 </html>

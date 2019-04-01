@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+</head>
+<body>
+<div th:replace="base :: galaxy"></div>
+
+<nav th:replace="base :: navbar"></nav>
+<h3> Weekly Time Sheets</h3>
+<!--<div class="container">-->
+    <!--<div th:each="timesheet : ${timesheets}">-->
+        <!--<div th:fragment="car" class="card">-->
+            <!--<div class="card-body">-->
+                <!--<h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>-->
+                <!--<span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>-->
+                    <!--</span>-->
+                <!--<span><a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a></span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<br>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Pay Code</th>
+            <th>Hours Worked</th>
+
+        </tr>
+        <tr th:each="t : ${timesheet.tsTimes}">
+            <td th:text="${t.date}"></td>
+            <td th:text="${t.startTime}"></td>
+            <td th:text="${t.endTime}"></td>
+            <td th:text="${t.payCode}"></td>
+            <td th:text="${t.hoursWorked}"></td>
+        </tr>
+    </table>
+    <br>
+    <div th:if="${timesheet.status == 0}">
+        <button type="button" class="btn btn-warning" disabled>Pending</button>
+    </div>
+    <br>
+    <div th:if="${timesheet.status == 1}">
+    <button type="button" class="btn btn-success" disabled>Approved</button>
+    </div>
+    <div th:if="${timesheet.status == 2}">
+        <button type="button" class="btn btn-danger" disabled>Rejected</button>
+    </div>
+    <div sec:authorize="hasAuthority('SUPER')">
+        <div th:if="${timesheet.user.department == userCurrent.department}">
+            <div th:if="${timesheet.status == 0}">
+                    <span>
+                        <form action="#" th:action="@{/approve}" th:object="${timesheet}" method="post">
+                        <input type="hidden" name="id" th:value="${id}"/>
+                        <div th:each="t : ${timesheet.tsTimes}">
+                            <input type="hidden" name>
+                            <input type=hidden name="date" th:value="${t.date}"></input>
+                            <input type=hidden name="startTime" th:value="${t.startTime}"></input>
+                            <input type=hidden name="endTime" th:value="${t.endTime}"></input>
+                            <input type=hidden name="payCode" th:value="${t.payCode}"></input>
+                            <input type=hidden name="hours" th:value="${t.hoursWorked}"></input>
+                        </div>
+                        <button type="submit" class="btn btn-success" >Approve</button>
+                    </form>
+                    &nbsp;
+                        <form action="#" th:action="@{/reject}" th:object="${timesheet}" method="post">
+                        <input type="hidden" name="id" th:value="${id}"/>
+                        <div th:each="t : ${timesheet.tsTimes}">
+                            <input type="hidden" name>
+                            <input type=hidden name="date" th:value="${t.date}"></input>
+                            <input type=hidden name="startTime" th:value="${t.startTime}"></input>
+                            <input type=hidden name="endTime" th:value="${t.endTime}"></input>
+                            <input type=hidden name="payCode" th:value="${t.payCode}"></input>
+                            <input type=hidden name="hours" th:value="${t.hoursWorked}"></input>
+                        </div>
+                            <textarea name="reasonText" value="reasonText" style="width:200px; height:300px;"></textarea><br/>
+                        <button type="submit" class="btn btn-danger" >Reject</button>
+
+                    </form>
+                    </span>
+                <!--<form action="/sendSimpleEmail" method="post">-->
+
+                    <!--<h2>Enter the reason</h2>-->
+                    <!---->
+                    <!--<button type="submit">Send Email</button>-->
+                <!--</form>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<div th:replace="base :: foot"></div>
+<th:block th:replace="base :: jslinks"></th:block>
+</html>

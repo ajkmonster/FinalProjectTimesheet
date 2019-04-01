@@ -33,6 +33,7 @@ public class TimeSheet {
 
     private int status;
 
+    private double totalhours;
 
     public TimeSheet(){
 
@@ -85,6 +86,14 @@ public class TimeSheet {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public double getTotalhours() {
+        return totalhours;
+    }
+
+    public void setTotalhours(double totalhours) {
+        this.totalhours = totalhours;
     }
 }
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+</head>
+
+<body>
+<div th:replace="base :: galaxy"></div>
+
+<nav th:replace="base :: navbar"></nav>
+
+<h3> Approved Time Sheets</h3>
+<div th:each="timesheet : ${timesheets}">
+<div th:if="${timesheet.status == 1}">
+<div class="container">
+        <div th:fragment="car" class="card">
+            <div class="card-body">
+                <span class="card-text"><b>Timesheet Number: </b><a th:text="${timesheet.id} "></a></span>
+                <span class="card-text"><b>Employee: </b><a th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></a></span>
+                <br>
+                <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                    </span>
+
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+</div>
+<h3>Pending Time Sheets</h3>
+<div th:each="timesheet : ${timesheets}">
+    <div th:if="${timesheet.status == 0}">
+        <div class="container">
+            <div th:fragment="car" class="card">
+                <div class="card-body">
+                    <span class="card-text"><b>Timesheet Number: </b><a th:text="${timesheet.id} "></a></span>
+                    <span class="card-text"><b>Employee: </b><a th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></a></span>
+                    <br>
+                    <span class="card-text">
+                        <a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                        <div th:if="${timesheet.status == 2 || timesheet.status == 0}">
+                            <a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a>
+                        </div>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<h3>Rejected Time Sheets</h3>
+<div th:each="timesheet : ${timesheets}">
+    <div th:if="${timesheet.status == 2}">
+        <div class="container">
+            <div th:fragment="car" class="card">
+                <div class="card-body">
+                    <span class="card-text"><b>Timesheet Number: </b><a th:text="${timesheet.id} "></a></span>
+                    <span class="card-text"><b>Employee: </b><a th:text="${timesheet.user.firstName + ' ' + timesheet.user.lastName}"></a></span>
+                    <br>
+                    <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                    </span>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="base :: foot"></div>
+<th:block th:replace="base :: jslinks"></th:block>
+
+
+</body>
+</html>
