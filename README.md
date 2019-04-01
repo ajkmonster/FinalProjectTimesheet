@@ -2,6 +2,17 @@
 
 ![Screenshot](https://res.cloudinary.com/dh18h6lff/image/upload/v1554127464/Home.png)
 
+<p align="center">REGISTRATION PAGE</p><br/>
+
+![Screenshot](https://res.cloudinary.com/dh18h6lff/image/upload/v1554127464/signup.png)
+
+<p align="center">TIMESHEET ENTRY PAGE</p><br/>
+
+![Screenshot](https://res.cloudinary.com/dh18h6lff/image/upload/v1554127464/timesheetentry.png)
+
+
+
+
 This timesheet application allows an employer to track the hours worked by their employees.
 
 Users(employees) log their daily time & edit their timesheet at any time before submission. 
