@@ -1,4 +1,6 @@
-![Screenshot](https://res.cloudinary.com/dh18h6lff/image/upload/v1554127013/Home.png)
+<p align="center">HOMEPAGE</p><br/>
+
+![Screenshot](https://res.cloudinary.com/dh18h6lff/image/upload/v1554127464/Home.png)
 
 This timesheet application allows an employer to track the hours worked by their employees.
 
