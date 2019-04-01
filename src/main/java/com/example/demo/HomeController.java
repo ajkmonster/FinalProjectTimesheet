@@ -113,7 +113,7 @@ public class HomeController {
     @PostMapping("/timesheetentryprocess")
     public String timesheetentryprocess(@ModelAttribute("timeSheet") TimeSheet timeSheet ,
                                         @RequestParam("payCode") String[] paycode,@RequestParam("startTime") String[] starttime, @RequestParam("endTime") String[] endtime,
-                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model,Action action) {
+                                        @RequestParam("date") String[] date, @RequestParam("hours") Double[] hours, Model model,Action action, @RequestParam("page") int page) {
 
 //        if (result.hasErrors()) {
 //            return "timesheetentry";
@@ -138,10 +138,18 @@ public class HomeController {
             t.setTimeSheet(timeSheet);
             tsTimesRepository.save(t);
         }
-        action.setUser(userService.getUser());
-        action.setAction("Submitted Time sheet " + timeSheet.getId()+ " for approval");
-        action.setCurrenttime(LocalDate.now());
-        actionRepository.save(action);
+        if(page==1) {
+            action.setUser(userService.getUser());
+            action.setAction("Submitted Time sheet " + timeSheet.getId() + " for approval");
+            action.setCurrenttime(LocalDate.now());
+            actionRepository.save(action);
+        }
+        if(page==2) {
+            action.setUser(userService.getUser());
+            action.setAction("Updated Time sheet " + timeSheet.getId() + " for approval");
+            action.setCurrenttime(LocalDate.now());
+            actionRepository.save(action);
+        }
         ArrayList<TimeSheet> results = (ArrayList<TimeSheet>)
                 timeSheetRespository.findByUser(userService.getUser());
         model.addAttribute("timesheets",results);
