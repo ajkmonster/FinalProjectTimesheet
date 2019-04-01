@@ -64,6 +64,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public Set<TimeSheet> timeSheet;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    public Set<Action> actions;
 
     public User() {
     }
@@ -97,6 +99,15 @@ public class User {
         this.setSocial(social);
         this.setDepartment(department);
     }
+
+    public Set<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(Set<Action> actions) {
+        this.actions = actions;
+    }
+
     public String getFirstName() {
         return firstName;
     }
