@@ -64,7 +64,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public Set<TimeSheet> timeSheet;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "userAction", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     public Set<Action> actions;
 
     public User() {

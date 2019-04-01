@@ -11,8 +11,8 @@ public class Action {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToMany
-    private User user;
+    @ManyToOne
+    private User userAction;
 
     private LocalDate currenttime;
 
@@ -44,11 +44,11 @@ public class Action {
         this.action = action;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserAction() {
+        return userAction;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserAction(User userAction) {
+        this.userAction = userAction;
     }
 }

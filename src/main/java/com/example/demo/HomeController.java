@@ -55,7 +55,7 @@ public class HomeController {
         {
             user.setUsername();
             userService.saveUser(user);
-            action.setUser(user);
+            action.setUserAction(user);
             action.setAction("Created your account");
             action.setCurrenttime(LocalDate.now());
             actionRepository.save(action);
@@ -103,7 +103,7 @@ public class HomeController {
     @GetMapping("/timesheetentry")
     public String timesheetentry(Model model,Action action){
     model.addAttribute("timeSheet",new TimeSheet());
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Created a Timesheet");
         action.setCurrenttime(LocalDate.now());
         actionRepository.save(action);
@@ -138,7 +138,7 @@ public class HomeController {
             t.setTimeSheet(timeSheet);
             tsTimesRepository.save(t);
         }
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Submitted Time sheet " + timeSheet.getId()+ " for approval");
         action.setCurrenttime(LocalDate.now());
         actionRepository.save(action);
@@ -152,7 +152,7 @@ public class HomeController {
     public String updateTimesheet(@PathVariable("id") long id, Model model, Action action){
         model.addAttribute("timesheet", timeSheetRespository.findById(id).get());
         model.addAttribute("userCurrent",userService.getUser());
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Looked at detail of Timsheet "+ id);
         action.setCurrenttime(LocalDate.now());
         actionRepository.save(action);
@@ -200,7 +200,7 @@ public class HomeController {
             resultstimesheet.add(x,t);
             x += x;
         }
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Pulled Approved, Pending, and Rejected Time Sheets");
         action.setCurrenttime(LocalDate.now());
         actionRepository.save(action);
@@ -230,7 +230,7 @@ public class HomeController {
             t.setTimeSheet(timeSheet);
             tsTimesRepository.save(t);
         }
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Approved Time Sheet " + timeSheet.getId() + " of " + timeSheet.getUser().getFirstName()
                 + " " + timeSheet.getUser().getLastName());
         action.setCurrenttime(LocalDate.now());
@@ -259,7 +259,7 @@ public class HomeController {
             t.setTimeSheet(timeSheet);
             tsTimesRepository.save(t);
         }
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Rejected Time Sheet " + timeSheet.getId() + " of " + timeSheet.getUser().getFirstName()
                 + " " + timeSheet.getUser().getLastName());
         action.setCurrenttime(LocalDate.now());
@@ -282,7 +282,7 @@ public class HomeController {
                 timeSheetRespository.save(t);
             }
         }
-        action.setUser(userService.getUser());
+        action.setUserAction(userService.getUser());
         action.setAction("Retrieving Paystub for approved Time Sheets");
         action.setCurrenttime(LocalDate.now());
         actionRepository.save(action);
@@ -291,10 +291,9 @@ public class HomeController {
         return "paystub";
     }
     @RequestMapping("/action")
-    public String actionpage(User user,Model model){
-        user = userService.getUser();
-        Set<Action> actions = user.getActions();
-        model.addAttribute(actions);
+    public String actionpage(Model model){
+        ArrayList<Action> actions =(ArrayList<Action>)actionRepository.findByUserAction(userService.getUser());
+        model.addAttribute("actions", actions);
         return "action";
     }
 
