@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+</head>
+
+<body>
+<div th:replace="base :: galaxy"></div>
+
+<nav th:replace="base :: navbar"></nav>
+
+
+
+    <div class="container">
+        <h3> Weekly Time Sheets</h3>
+        <div th:each="timesheet : ${timesheets}">
+            <div th:fragment="car" class="card">
+                <div class="card-body">
+                    <h5>Timesheet Number:</h5><p class="card-text" th:text="${timesheet.id}"></p>
+                    <div th:if="${timesheet.status == 0}">
+                        <button type="button" class="btn btn-warning" disabled>Pending</button>
+                    </div>
+                    <div th:if="${timesheet.status == 1}">
+                        <button type="button" class="btn btn-success" disabled>Approved</button>
+                    </div>
+                    <div th:if="${timesheet.status == 2}">
+                        <button type="button" class="btn btn-danger" th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Rejected</button>
+                    </div>
+                    <span><a th:href="@{/detailtimesheet/{id}(id=${timesheet.id})}">Details</a>
+                    </span>
+                    <div th:if="${timesheet.status == 2 || timesheet.status == 0}">
+                        <span><a th:href="@{/updatetimesheet/{id}(id=${timesheet.id})}">Update</a></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+
+
+
+<div th:replace="base :: foot"></div>
+<th:block th:replace="base :: jslinks"></th:block>
+
+
+</body>
+</html>

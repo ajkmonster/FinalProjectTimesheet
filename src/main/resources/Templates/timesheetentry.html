@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+<body>
+<div th:replace="base :: galaxy"></div>
+<nav th:replace="base :: navbar"></nav>
+    <div class="container">
+
+        <h2 align="center">Enter Your Time</h2>
+        <form action="#" th:action="@{/timesheetentryprocess}" th:object="${timeSheet}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <fieldset id="timesheet-rows" name="tsTimes">
+                <legend>Enter Your Time</legend>
+
+                <div class="timesheet-row">
+                    <label>Pay Code:
+                        <select name="payCode"  required>
+                            <option>Regular</option>
+                            <option>Leave Without Pay</option>
+                            <option>Annual Leave</option>
+                            <option>Comp Time Used</option>
+                            <option>Holiday</option>
+                            <option>Holiday Worked</option>
+                            <option>Regular Overtime</option>
+                            <option>Holiday Overtime</option>
+                        </select>
+                    </label>
+                    <label>Date : <input type="date" class="form-control" name="date" placeholder="" required/></label>
+                    <label>Start Time:
+                        <input type="time" step="0.25" name="startTime" width="1" placeholder="2.0" required />
+                    </label>
+                    <label>End Time:
+                        <input type="time" step="0.25" name="endTime" width="1" placeholder="2.0" required />
+                    </label>
+
+                    <label>Hours:
+                        <input type="double" step="0.25" name="hours" width="1" placeholder="Hours" required />
+
+                    </label>
+
+                </div>
+
+                <input type="button" id="add-row" name="add-row" value="Add row" />
+                <input type="hidden" name="page" th:value="1"/>
+
+            </fieldset>
+            <br>
+            <input class="btn-sm btn-success btn" type="submit" name="SUBMIT"/><br/><br/>
+        </form>
+
+
+
+    </div>
+</div>
+
+<div th:replace="base :: foot"></div>
+<script th:src="@{/tsform.js}"></script>
+<th:block th:replace="base :: jslinks"></th:block>
+
+
+</body>
+</html>

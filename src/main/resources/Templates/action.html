@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:replace="base :: headstuff">
+</head>
+<body>
+<div th:replace="base :: galaxy"></div>
+<nav th:replace="base :: navbar"></nav>
+
+<div class="container"><h2>Action's Taken</h2>
+    <span th:each="a : ${actions}">
+        <a th:text="${a.currenttime}"></a>
+        <a th:text="${a.action}"></a>
+    </span>
+</div>
+
+
+
+
+    <div th:replace="base :: foot"></div>
+<th:block th:replace="base :: jslinks"></th:block>
+
+</body>
+</html>

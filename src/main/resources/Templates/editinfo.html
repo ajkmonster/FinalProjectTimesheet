@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="base :: galaxy"></div>
+<nav th:replace="base :: navbar"></nav>
+
+
+<br>
+<form autocomplete="off" class="form-horizontal" action="#" th:action="@{/editinfo}" th:object="${user}" method="post">
+    <div class="ui-widget">
+        <div class="form-inline">
+            <input type="hidden" th:field="*{id}" />
+            <label class="control-label col-sm-1 text-center" for="firstname">First Name:</label>
+            <div class="col-auto">
+                <input type="text" class="form-control basicAutoComplete" id="firstname" placeholder="First Name" th:field="*{firstName}" />
+                <span th:if="${#fields.hasErrors('firstName')}"
+                      th:errors="*{firstName}"></span><br />
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="lastname">Last Name:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="lastname" placeholder="Last Name" th:field="*{lastName}" />
+            <span th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="*{lastName}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="street">Street:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="street" placeholder="Street" th:field="*{street}" />
+            <span th:if="${#fields.hasErrors('street')}"
+                  th:errors="*{street}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="street">City:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="city" placeholder="City" th:field="*{city}" />
+            <span th:if="${#fields.hasErrors('city')}"
+                  th:errors="*{city}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="zip">zip:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="zip" placeholder="Zip" th:field="*{zip}" />
+            <span th:if="${#fields.hasErrors('zip')}"
+                  th:errors="*{zip}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="State">State:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="State" placeholder="State" th:field="*{state}" />
+            <span th:if="${#fields.hasErrors('state')}"
+                  th:errors="*{state}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1 text-center" for="social">Social:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="social" placeholder="Social" th:field="*{social}" />
+            <span th:if="${#fields.hasErrors('street')}"
+                  th:errors="*{social}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1" for="email">Email:</label>
+        <div class="col-auto">
+            <input type="text" class="form-control basicAutoComplete" id="email" placeholder="Email" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span><br />
+        </div>
+    </div>
+    <br />
+    <div class="form-inline">
+        <label class="control-label col-sm-1" for="username">Username:</label>
+        <div class="col-auto">
+            <input type="hidden" th:field="*{username}" id="username" />
+            <span th:if="${#fields.hasErrors('username')}"
+                  th:errors="*{username}"></span><br />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1" for="password">Password:</label>
+        <div class="col-auto">
+            <input type="password" class="form-control basicAutoComplete" id="password" placeholder="password" th:field="*{password}" />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1" for="department">Department:</label>
+        <div class="col-auto">
+                <select th:field="*{department}" class="form-control input-md" id="department">
+                <option th:each="option: ${departments}"
+                th:value="${option.id}">[[${option.departmentName}]]</option>
+                </select>
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <label class="control-label col-sm-1"></label>
+        <div class="col-auto">
+            <button type="submit"  class="btn btn-outline-dark">Submit</button>
+        </div>
+    </div>
+    <br>
+
+</form>
+<br>
+
+<div th:replace="base :: foot"></div>
+<th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>
