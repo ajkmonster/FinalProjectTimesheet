@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import com.sun.javafx.beans.IDProperty;
+
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
 public class TSTimes {
