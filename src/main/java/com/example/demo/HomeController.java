@@ -73,7 +73,7 @@ public class HomeController {
         return "index";
     }
     @GetMapping("/login")
-    public String login(Model model,Action action){
+    public String login(){
 
         return "login";
     }
