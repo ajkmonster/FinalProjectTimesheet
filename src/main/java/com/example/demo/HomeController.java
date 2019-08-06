@@ -127,7 +127,6 @@ public class HomeController {
             tsTimesRepository.save(t);
             times[i]=t;
         }
-
         timeSheet.setTsTimes(times);
         timeSheet.setStatus(0);
         timeSheet.setUser(userService.getUser());

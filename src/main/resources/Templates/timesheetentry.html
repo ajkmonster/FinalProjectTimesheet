@@ -43,7 +43,8 @@
 
                 </div>
 
-                <input type="button" id="add-row" name="add-row" value="Add row" />
+                <span><input type="button" id="add-row" name="add-row" value="Add row" />
+                <input type="button" id="delete-row" name="delete-row" value="Delete row" /></span>
                 <input type="hidden" name="page" th:value="1"/>
 
             </fieldset>
@@ -57,9 +58,9 @@
 </div>
 
 <div th:replace="base :: foot"></div>
-<script th:src="@{/tsform.js}"></script>
-<th:block th:replace="base :: jslinks"></th:block>
 
+<th:block th:replace="base :: jslinks"></th:block>
+<script th:src="@{/tsform.js}"></script>
 
 </body>
 </html>
