@@ -283,7 +283,7 @@ public class HomeController {
         ArrayList<TimeSheet> timeSheets =(ArrayList<TimeSheet>)timeSheetRespository.findByUser(userService.getUser());
         for (TimeSheet t : timeSheets){
             if(t.getStatus()== 1){
-                for (TSTimes x : t.tsTimes){
+                for (TSTimes x : t.getTsTimes()){
                     totalhours= totalhours + x.getHoursWorked();
                 }
                 t.setTotalhours(totalhours);

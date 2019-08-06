@@ -26,7 +26,7 @@ public class TimeSheet {
     @OneToMany(mappedBy = "timeSheet", cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER)
     @OrderColumn
-    public TSTimes[] tsTimes;
+    private TSTimes[] tsTimes;
 
     @ManyToOne
     private User user;

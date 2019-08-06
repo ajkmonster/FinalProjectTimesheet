@@ -15,7 +15,7 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER)
-    public Set<User> users;
+    private Set<User> users;
 
     public Department() {
     }

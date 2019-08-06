@@ -115,7 +115,7 @@
                             <div th:each="option : ${departments}">
                                     <div class="form-group">
                                         <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" value="">[[${option.departmentName}]]
+                                            <input type="checkbox" class="form-check-input" value="" th:field="*{department}">[[${option.departmentName}]]
                                         </label>
                                     </div>
                             </div>
